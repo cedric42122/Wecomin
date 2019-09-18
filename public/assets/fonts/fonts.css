@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("/public/assets/fonts/Poppins/Poppins-Bold.ttf");
+  font-display: auto;
+}
+
+@font-face {
+    font-family: "Rubik-Regular";
+    src: url("/public/assets/fonts/Rubik/Rubik-Regular.ttf");
+    font-display: auto;
+}
