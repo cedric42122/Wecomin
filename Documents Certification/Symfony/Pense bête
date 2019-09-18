@@ -1,0 +1,28 @@
+* Création de page dans Symfony = Créer une "Pubic Function" et lui attribuer une route et "render" un affichage.
+
+* Template = View
+
+* HandleRequest = analyser "Request" | exp: $form ->handleRequest($request);
+
+* Percist = percister dans le temps(sauvegarder) | exp: $manager->persist($user);
+
+* Flush = appliquer un "percist" | exp: $manager->flush();
+
+* Entity = Tables Bdd
+
+* Interpolation dans twig {{...}} = afficher le contenu d'une variable.
+
+* Commandes {%...%} = appeler une commande (exp: {%if...%}).
+
+* Donner des variables à Twig = rajouter un tableau dans le "render" du "controller" et déclarer les variables 
+	exp:  return $this->render('blog/index.html.twig', [
+            'controller_name' => 'BlogController',
+            'articles' => $articles
+        ]);
+
+* {{ form_row }} = permet des options | exp: {{ form_row(form.email, 'label': 'Adresse email', 'attr':{'placeholder': 'Adresse 							email...'}) }}
+
+* changer ou ajouter des roles dans User = implémenter le "getRoles" dans User.php (entity)
+
+
+
