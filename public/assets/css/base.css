@@ -14,3 +14,11 @@ body {
   font-size: 25px;
   color: aliceblue !important;
 }
+
+.connection {
+  margin-left: 150px;
+}
+
+#logo {
+  margin-top: 20px;
+}
