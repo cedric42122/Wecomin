@@ -50,4 +50,14 @@ class SecurityController extends AbstractController
      */
     public function logout()
     { }
+
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function admin()
+    {
+        return $this->render('admin/index.html.twig', [
+            'controller_name' => 'SecurityController',
+        ]);
+    }
 }
