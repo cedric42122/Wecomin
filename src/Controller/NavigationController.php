@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ServiceDelivery;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -42,8 +43,12 @@ class NavigationController extends AbstractController
      */
     public function services()
     {
+        $repo = $this->getDoctrine()->getRepository(ServiceDelivery::class);
+        $services = $repo->findAll();
+
         return $this->render('our services/index.html.twig', [
             'controller_name' => 'NavigationController',
+            'services' => $services
         ]);
     }
 

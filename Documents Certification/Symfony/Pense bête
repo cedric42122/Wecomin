@@ -24,5 +24,13 @@
 
 * changer ou ajouter des roles dans User = implémenter le "getRoles" dans User.php (entity)
 
+* Repository = sert à recupérer des donnée de l'entity dans la bdd
+		exp: $repo = $this->getDoctrine()->getRepository(ServiceDelivery::class);
+
+* Différents type dans les formulaires : https://symfony.com/doc/current/reference/forms/types.html
+
+
+
+
 
 
