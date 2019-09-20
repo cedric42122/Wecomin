@@ -5,17 +5,17 @@
 
 {% block body %}
 
-    <section class="services">
+    <div class="">
 
         {% for service in services %}
             <services>
                 <h2>{{ service.title }}</h2>
                 <img src="{{ service.picture }}" alt="image de la prestation">
-                {{ service.description | raw }}
-                {{ service.price }}
+                <div>{{ service.description | raw }}</div>
+                <div>{{ service.price }}</div>
             </services>
         {% endfor %}
 
-    </section>
+    </div>
 
 {% endblock %}
