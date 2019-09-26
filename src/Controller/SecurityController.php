@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
@@ -29,7 +30,7 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            $this->addFlash('success','Votre compte est bien enregistré !');
+            $this->addFlash('success', 'Votre compte est bien enregistré !');
 
             return $this->redirectToRoute('security_login');
         }
@@ -42,9 +43,17 @@ class SecurityController extends AbstractController
     /**
      * @Route("/connexion", name="security_login")
      */
-    public function login()
+    public function login(AuthenticationUtils $authenticationUtils)
     {
-        return $this->render('security/login.html.twig');
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
     }
 
     /**
@@ -52,6 +61,25 @@ class SecurityController extends AbstractController
      */
     public function logout()
     { }
+
+    /**
+* @Route("/user/ajoute_role", name="ajoute_role")
+*/
+public function ajoutRole()
+{
+    
+   $role = ['ROLE_ADMIN'];
+ 
+   $user = $this->getUser();
+ 
+   $user->setRoles($role);
+ 
+   $em = $this->getDoctrine()->getManager();
+   $em->persist($user);
+   $em->flush();
+ 
+   return $this->redirectToRoute('admin');
+}
 
     /**
      * @Route("/admin", name="admin")

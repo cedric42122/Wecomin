@@ -143,7 +143,15 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_USER', 'ROLE_ADMIN'];
+        if (empty($this->roles)) {
+            return ['ROLE_USER'];
+        }
+        return $this->roles;
+    }
+
+    function addRole($role) 
+    {
+        $this->roles[] = $role;
     }
 
     public function setRoles(?array $roles): self
