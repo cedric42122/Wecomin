@@ -69,13 +69,4 @@ class ShoppingController extends AbstractController
 
         ]);
     }
-
-    /**
-     * @Route("/edit/{id}", name="edit")
-     */
-
-     public function edit()
-     {
-
-     }
 }

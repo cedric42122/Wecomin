@@ -49,14 +49,14 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isAdmin;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="user")
      */
     private $orders;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $roles = [];
 
     public function __construct()
     {
@@ -104,18 +104,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getIsAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Order[]
      */
@@ -155,6 +143,13 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return ['ROLE_USER', 'ROLE_ADMIN'];
+    }
+
+    public function setRoles(?array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 }
