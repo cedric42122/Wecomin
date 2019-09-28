@@ -61,4 +61,14 @@ class NavigationController extends AbstractController
             'controller_name' => 'NavigationController',
         ]);
     }
+
+    /**
+     * @Route("/errorAccess", name="errorAccess")
+     */
+    public function errorAccess()
+    {
+        return $this->render('errorAccess/index.html.twig', [
+            'controller_name' => 'NavigationController',
+        ]);
+    }
 }

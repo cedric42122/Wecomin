@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -63,31 +64,34 @@ class SecurityController extends AbstractController
     { }
 
     /**
-* @Route("/user/ajoute_role", name="ajoute_role")
-*/
-public function ajoutRole()
-{
-    
-   $role = ['ROLE_ADMIN'];
- 
-   $user = $this->getUser();
- 
-   $user->setRoles($role);
- 
-   $em = $this->getDoctrine()->getManager();
-   $em->persist($user);
-   $em->flush();
- 
-   return $this->redirectToRoute('admin');
-}
+     * @Route("/user/ajoute_role", name="ajoute_role")
+     */
+    public function ajoutRole()
+    {
+
+        $role = ['ROLE_ADMIN'];
+
+        $user = $this->getUser();
+
+        $user->setRoles($role);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('admin');
+    }
 
     /**
      * @Route("/admin", name="admin")
      */
-    public function admin()
+    public function admin(AuthorizationCheckerInterface $authChecker)
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'SecurityController',
-        ]);
+        if ($authChecker->isGranted('ROLE_USER') and !$authChecker->isGranted('ROLE_USER')) {
+            return $this->render('admin/index.html.twig', [
+                'controller_name' => 'SecurityController',
+            ]);
+        }
+        return $this->redirectToRoute('errorAccess');
     }
 }
