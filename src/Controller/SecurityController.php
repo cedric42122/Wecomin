@@ -46,9 +46,7 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
@@ -87,7 +85,8 @@ class SecurityController extends AbstractController
      */
     public function admin(AuthorizationCheckerInterface $authChecker)
     {
-        if ($authChecker->isGranted('ROLE_USER') and !$authChecker->isGranted('ROLE_USER')) {
+        if ($authChecker->isGranted('ROLE_ADMIN') and !$authChecker->isGranted('ROLE_USER')) {
+            dd($authChecker);
             return $this->render('admin/index.html.twig', [
                 'controller_name' => 'SecurityController',
             ]);

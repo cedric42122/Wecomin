@@ -56,11 +56,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="array", nullable=true)
      */
-    private $roles = [];
+    private $roles;
 
     public function __construct()
     {
-        $this->orders = new ArrayCollection();
+        $this->roles = array('ROLE_ADMIN');
+        // $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,7 +145,7 @@ class User implements UserInterface
     public function getRoles()
     {
         if (empty($this->roles)) {
-            return ['ROLE_USER'];
+            return ['ROLE_ADMIN'];
         }
         return $this->roles;
     }
