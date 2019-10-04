@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modification des utilisateurs
+{% endblock %}
+
+{% block body %}
+
+    <div class="">
+        <label>CHOISIR UN UTILISATEUR A MODIFIER</label>
+        <select>
+            {% for user in users %}
+                <option value="">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+{% endblock %}

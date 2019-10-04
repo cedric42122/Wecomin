@@ -60,8 +60,8 @@ class ShoppingController extends AbstractController
         $serviceChange = array_map(function ($serviceDelivery) {
             return $serviceDelivery->getTitle();
         }, $repo->findAll());
-
-        //  dd($serviceChange); 
+        
+        dd($serviceChange);
 
         return $this->render('our services/serviceChange.html.twig', [
             'controller_name' => 'shoppingController',

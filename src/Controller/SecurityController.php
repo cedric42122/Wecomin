@@ -14,7 +14,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-
     /**
      * @Route("/inscription", name="security_registration")
      */
@@ -31,7 +30,7 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            $this->addFlash('success', 'Votre compte est bien enregistré !');
+            // $this->addFlash('success', 'Votre compte est bien enregistré !');
 
             return $this->redirectToRoute('security_login');
         }
@@ -62,22 +61,18 @@ class SecurityController extends AbstractController
     { }
 
     /**
-     * @Route("/user/ajoute_role", name="ajoute_role")
+     * @Route("/admin/userModification", name="userModification")
      */
-    public function ajoutRole()
+    public function userModification()
     {
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $users = $repo->findAll();
 
-        $role = ['ROLE_ADMIN'];
-
-        $user = $this->getUser();
-
-        $user->setRoles($role);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
-
-        return $this->redirectToRoute('admin');
+        // dd($users);
+        return $this->render('admin/userChange.html.twig', [
+            'controller_name' => 'SecurityController',
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -90,8 +85,6 @@ class SecurityController extends AbstractController
                 'controller_name' => 'SecurityController',
             ]);
         }
-        else {
-            return $this->redirectToRoute('errorAccess');
-        }
+        return $this->redirectToRoute('exception');
     }
 }
