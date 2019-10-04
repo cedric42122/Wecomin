@@ -85,12 +85,13 @@ class SecurityController extends AbstractController
      */
     public function admin(AuthorizationCheckerInterface $authChecker)
     {
-        if ($authChecker->isGranted('ROLE_ADMIN') and !$authChecker->isGranted('ROLE_USER')) {
-            dd($authChecker);
+        if ($authChecker->isGranted('ROLE_ADMIN')) {
             return $this->render('admin/index.html.twig', [
                 'controller_name' => 'SecurityController',
             ]);
         }
-        return $this->redirectToRoute('errorAccess');
+        else {
+            return $this->redirectToRoute('errorAccess');
+        }
     }
 }
