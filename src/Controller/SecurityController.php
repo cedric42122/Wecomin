@@ -30,8 +30,6 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            // $this->addFlash('success', 'Votre compte est bien enregistré !');
-
             return $this->redirectToRoute('security_login');
         }
 
@@ -63,15 +61,34 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/userModification", name="userModification")
      */
-    public function userModification()
+    public function userModification(Request $request, ObjectManager $manager)
     {
+        // Récupération de tous les utilisateurs en BDD
         $repo = $this->getDoctrine()->getRepository(User::class);
         $users = $repo->findAll();
 
-        // dd($users);
+        // Formulaire modification utilisateur
+        $form = $this->createFormBuilder($users)
+            ->add('username')
+            ->add('email')
+            ->add('roles')
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($form);
+            $manager->flush();
+            
+            return $this->redirectToRoute('userModification');
+
+        }
+//  dd($form);
+    //  dd($users);
         return $this->render('admin/userChange.html.twig', [
             'controller_name' => 'SecurityController',
             'users' => $users,
+            'userChangeForm' => $form->createView()
+
         ]);
     }
 

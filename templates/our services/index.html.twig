@@ -9,7 +9,7 @@
 
         {% for service in services %}
             <services>
-                <h2>{{ service.title }}</h2>
+                <h1>{{ service.title }}</h1>
                 <img src="{{ service.picture }}" alt="image de la prestation">
                 <div>{{ service.description | raw }}</div>
                 <div>{{ service.price }}</div>
