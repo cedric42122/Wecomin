@@ -5,6 +5,10 @@ body {
   overflow-x: hidden;
 }
 
+.navbar {
+  height: 80px;
+}
+
 .navbar,
 .page-footer {
   font-family: "Poppins-Bold";
