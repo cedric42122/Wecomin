@@ -65,30 +65,33 @@ class SecurityController extends AbstractController
     {
         // Récupération de tous les utilisateurs en BDD
         $repo = $this->getDoctrine()->getRepository(User::class);
-        $user = $repo->findAll();
+        $users = $repo->findAll();
+        // dd($users);
 
-        foreach ($user as $users) {
+
+        foreach ($users as $user) {
 
             // Formulaire modification utilisateur
-            $form = $this->createFormBuilder($users)
+            $form = $this->createFormBuilder($user)
                 ->add('username')
                 ->add('email')
                 ->add('roles')
                 ->getForm();
-        }
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($form);
-            $manager->flush();
 
-            return $this->redirectToRoute('userModification');
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $manager->persist($form);
+                $manager->flush();
+
+                return $this->redirectToRoute('userModification');
+            }
         }
-        //  dd($form);
-        //  dd($users);
+        //   dd($form);
+        //    dd($users);
         return $this->render('admin/userChange.html.twig', [
             'controller_name' => 'SecurityController',
             'users' => $users,
-            'userChangeForm' => $form->createView()
+            'userChangeForm' => $form->createView(),
         ]);
     }
 
