@@ -12,7 +12,7 @@
                     <option value="">{{ user.username }}</option>
             {% endfor %}
         </select>
-    </div>
+    
     {{ form_start(userChangeForm) }}
     {{ form_row(userChangeForm.username) }}
     {{ form_row(userChangeForm.email) }}
@@ -20,5 +20,5 @@
 
     <button type="submit" class="btn btn-success">Modifier</button>
     {{ form_end(userChangeForm) }}
-
+</div>
 {% endblock %}
