@@ -6,21 +6,30 @@
 {% block body %}
 
     <div class="">
-            <label>CHOISIR UN UTILISATEUR A MODIFIER</label>
+        <label>CHOISIR UN UTILISATEUR A MODIFIER</label>
 
-            <select onclick="">
+        <select id="selectUser" >
             <option value=""></option>
             {% for user in users %}
-                <option value="">{{ user.username }}</option>
+                <option value="{{ user.id }}">{{ user.username }}</option>
             {% endfor %}
-            </select>
+        </select>
+        
+        <pre>
+            {{dump(users)}}
+        </pre>
 
-        {{ form_start(userChangeForm) }}
+
+{#         {{ form_start(userChangeForm) }}
         {{ form_row(userChangeForm.username) }}
         {{ form_row(userChangeForm.email) }}
         {{ form_row(userChangeForm.roles) }}
 
+        <pre>
+            {{ dump(userChangeForm) }}
+        </pre>
+
         <button type="submit" class="btn btn-success">Modifier</button>
-        {{ form_end(userChangeForm) }}
+        {{ form_end(userChangeForm) }} #}
     </div>
 {% endblock %}

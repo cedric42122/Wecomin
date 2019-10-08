@@ -69,7 +69,7 @@ class SecurityController extends AbstractController
         // dd($users);
 
 
-        foreach ($users as $user) {
+/*         foreach ($users as $user) {
 
             // Formulaire modification utilisateur
             $form = $this->createFormBuilder($user)
@@ -85,13 +85,13 @@ class SecurityController extends AbstractController
 
                 return $this->redirectToRoute('userModification');
             }
-        }
+        } */
         //   dd($form);
         //    dd($users);
         return $this->render('admin/userChange.html.twig', [
             'controller_name' => 'SecurityController',
             'users' => $users,
-            'userChangeForm' => $form->createView(),
+            //'userChangeForm' => $form->createView(),
         ]);
     }
 
@@ -106,5 +106,13 @@ class SecurityController extends AbstractController
             ]);
         }
         return $this->redirectToRoute('exception');
+    }
+
+    /**
+     * @Route("/admin/ajaxSelect", name="ajaxSelect")
+     */
+    public function ajaxUserSelectedAction(Request $request)
+    {
+        return new response('test');
     }
 }
