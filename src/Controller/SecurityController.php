@@ -69,9 +69,9 @@ class SecurityController extends AbstractController
         // dd($users);
 
 
-/*         foreach ($users as $user) {
+         foreach ($users as $user) {
 
-            // Formulaire modification utilisateur
+            //Formulaire modification utilisateur
             $form = $this->createFormBuilder($user)
                 ->add('username')
                 ->add('email')
@@ -85,7 +85,7 @@ class SecurityController extends AbstractController
 
                 return $this->redirectToRoute('userModification');
             }
-        } */
+        } 
         //   dd($form);
         //    dd($users);
         return $this->render('admin/userChange.html.twig', [
