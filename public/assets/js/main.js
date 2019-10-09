@@ -1,24 +1,19 @@
-$('select').on('change', function() {
-    alert( this.value );
-
-    // myvalue = this.value;
-    // console.console.log(value);
+$('#selectUser').change(function() {
     
+    var idUtilisateur = this.value;
 
     $.ajax({
         url: "/admin/ajaxSelect",
         type: "POST",
         data: {
-            test: "hello"
+            idUtilisateur: idUtilisateur
         },
-        success: function(){
-            // alert( value );
+        success: function(result){
+            $('#formulaireModif').html(result);
         },
         error: function(){
-            alert( value );
         },
         complete: function(){
-            //alert( value );
         }
     })
 });

@@ -15,21 +15,7 @@
             {% endfor %}
         </select>
         
-        <pre>
-            {{dump(users)}}
-        </pre>
+<div id="formulaireModif"></div>
 
-
-{#         {{ form_start(userChangeForm) }}
-        {{ form_row(userChangeForm.username) }}
-        {{ form_row(userChangeForm.email) }}
-        {{ form_row(userChangeForm.roles) }}
-
-        <pre>
-            {{ dump(userChangeForm) }}
-        </pre>
-
-        <button type="submit" class="btn btn-success">Modifier</button>
-        {{ form_end(userChangeForm) }} #}
     </div>
 {% endblock %}

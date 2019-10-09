@@ -1,0 +1,6 @@
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+// ...
+
+$builder->add('token', HiddenType::class, [
+    'data' => 'abcdef',
+]);

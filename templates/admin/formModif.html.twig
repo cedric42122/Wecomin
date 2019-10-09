@@ -1,0 +1,16 @@
+<form action="/admin/actionModification" class="border" method="POST">
+    <h1 class="text-center">Modification de l'utilisateur
+        {{idUtilisateur.username}}</h1>
+
+    {{ form_start(userChangeForm) }}
+    {{ form_row(userChangeForm.username) }}
+    {{ form_row(userChangeForm.email) }}
+    {{ form_row(userChangeForm.roles ) }}
+
+<input type="hidden" name="id" value="{{idUtilisateur.id}}">
+
+    <input type="submit" value="MODIFIER">
+    {{ form_end(userChangeForm) }}
+
+
+</form>
