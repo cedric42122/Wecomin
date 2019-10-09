@@ -7,10 +7,12 @@ use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SecurityController extends AbstractController
 {
@@ -63,6 +65,7 @@ class SecurityController extends AbstractController
      */
     public function userModification(Request $request, ObjectManager $manager)
     {
+<<<<<<< HEAD
         // Récupération de tous les utilisateurs en BDD
         $repo = $this->getDoctrine()->getRepository(User::class);
         $users = $repo->findAll();
@@ -88,11 +91,48 @@ class SecurityController extends AbstractController
         } 
         //   dd($form);
         //    dd($users);
+=======
+
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+
+>>>>>>> 05a79201d057014b606cbfa606f93d003b7da1be
         return $this->render('admin/userChange.html.twig', [
             'controller_name' => 'SecurityController',
             'users' => $users,
-            //'userChangeForm' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/admin/actionModification", name="actionModification")
+     */
+    public function actionModification(Request $request, ObjectManager $manager)
+    {
+
+        $id = $request->request->get('id');
+
+        // Récupération des données du formulaire
+        $form = $request->request->get('form');
+
+        $username = $form['username'];
+        $email = $form['email'];
+
+        $role = $form['roles'];
+
+        // Récupération de l'objet user en base
+        $userBdd = $this->getDoctrine()->getRepository(User::class)->findOneById($id);
+
+
+        // Affection du role souhaité à l'utilisateur concerné
+        $userBdd->setUsername($username);
+        $userBdd->setEmail($email);
+        $userBdd->setRoles($role);
+
+        $manager->persist($userBdd);
+        $manager->flush();
+
+
+        return $this->redirectToRoute('userModification');
     }
 
     /**
@@ -113,6 +153,22 @@ class SecurityController extends AbstractController
      */
     public function ajaxUserSelectedAction(Request $request)
     {
-        return new response('test');
+
+        $id = $request->request->get('idUtilisateur');
+
+        // Récupération de tous les utilisateurs en BDD
+        $utilisateur = $this->getDoctrine()->getRepository(User::class)->findOneById($id);
+
+        // Formulaire modification utilisateur
+        $form = $this->createFormBuilder($utilisateur)
+            ->add('username')
+            ->add('email')
+            ->add('roles')
+            ->getForm();
+
+        return $this->render('admin/formModif.html.twig', [
+            'userChangeForm' => $form->createView(),
+            'idUtilisateur' => $utilisateur
+        ]);
     }
 }
