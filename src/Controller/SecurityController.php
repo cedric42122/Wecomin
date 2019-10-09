@@ -65,11 +65,9 @@ class SecurityController extends AbstractController
      */
     public function userModification(Request $request, ObjectManager $manager)
     {
-<<<<<<< HEAD
         // Récupération de tous les utilisateurs en BDD
         $repo = $this->getDoctrine()->getRepository(User::class);
         $users = $repo->findAll();
-        // dd($users);
 
 
          foreach ($users as $user) {
@@ -89,14 +87,6 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('userModification');
             }
         } 
-        //   dd($form);
-        //    dd($users);
-=======
-
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-
-
->>>>>>> 05a79201d057014b606cbfa606f93d003b7da1be
         return $this->render('admin/userChange.html.twig', [
             'controller_name' => 'SecurityController',
             'users' => $users,

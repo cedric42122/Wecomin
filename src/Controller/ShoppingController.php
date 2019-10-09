@@ -51,9 +51,8 @@ class ShoppingController extends AbstractController
         ]);
     }
     /**
-     * @Route("/serviceChange", name="serviceChange")
+     * @Route("/admin/serviceChange", name="serviceChange")
      */
-
     public function serviceChange()
     {
         $repo = $this->getDoctrine()->getRepository(ServiceDelivery::class);
@@ -61,9 +60,9 @@ class ShoppingController extends AbstractController
             return $serviceDelivery->getTitle();
         }, $repo->findAll());
         
-        dd($serviceChange);
+        // dd($serviceChange);
 
-        return $this->render('our services/serviceChange.html.twig', [
+        return $this->render('admin/serviceChange.html.twig', [
             'controller_name' => 'shoppingController',
             'services' => $serviceChange,
 
