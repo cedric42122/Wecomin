@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql
--- Generation Time: Sep 17, 2019 at 07:05 AM
--- Server version: 10.3.13-MariaDB-1:10.3.13+maria~bionic
--- PHP Version: 7.2.19
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  jeu. 10 oct. 2019 à 10:57
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,22 +19,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wecomin`
+-- Base de données :  `wecomin`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migration_versions`
+-- Structure de la table `migration_versions`
 --
 
-CREATE TABLE `migration_versions` (
+DROP TABLE IF EXISTS `migration_versions`;
+CREATE TABLE IF NOT EXISTS `migration_versions` (
   `version` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `executed_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+  `executed_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migration_versions`
+-- Déchargement des données de la table `migration_versions`
 --
 
 INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
@@ -42,137 +44,101 @@ INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
 ('20190916131514', '2019-09-16 13:15:19'),
 ('20190916131852', '2019-09-16 13:18:57'),
 ('20190916133757', '2019-09-16 13:38:03'),
-('20190916133951', '2019-09-16 13:39:57');
+('20190916133951', '2019-09-16 13:39:57'),
+('20190925163204', '2019-10-02 07:36:50');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- Structure de la table `news`
 --
 
-CREATE TABLE `news` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `article` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
-  `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Structure de la table `order`
 --
 
-CREATE TABLE `order` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE IF NOT EXISTS `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `service_delivery_id` int(11) DEFAULT NULL,
   `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ammount` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_F5299398DE894F8D` (`service_delivery_id`),
+  KEY `IDX_F5299398A76ED395` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service_delivery`
+-- Structure de la table `service_delivery`
 --
 
-CREATE TABLE `service_delivery` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `service_delivery`;
+CREATE TABLE IF NOT EXISTS `service_delivery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
-  `promotion` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `promotion` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `service_delivery`
+--
+
+INSERT INTO `service_delivery` (`id`, `title`, `description`, `picture`, `price`, `promotion`) VALUES
+(1, 'Découverte internet', 'Apprenez à découvrir les basics d\'internet...', '/uploads/internet-5d9f0d6c681ff.jpeg', 100, 1),
+(2, 'Coaching Web', 'Apprenez à utiliser internet dans votre business', '/uploads/coaching-5d9f0da8939c3.jpeg', 250, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `roles` longtext COLLATE utf8mb4_unicode_ci COMMENT '(DC2Type:array)',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Indexes for dumped tables
+-- Déchargement des données de la table `user`
 --
 
---
--- Indexes for table `migration_versions`
---
-ALTER TABLE `migration_versions`
-  ADD PRIMARY KEY (`version`);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `roles`) VALUES
+(1, 'cedric', '$argon2id$v=19$m=65536,t=4,p=1$SG4yaUU2MVMxamJZRTd3OA$9Y5UtAKMEQ3E3h2Oer50Yz7wzuC5eGdqYrAnYEFkFJ8', 'cedric@gmail.com', 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}'),
+(2, 'toto', '$argon2id$v=19$m=65536,t=4,p=1$cXBibEVZWHhvZGJRR3gyeg$jb/zwgcuhfvTitDdbkExC9mkBvR2lGJzC9DjpKJLZcU', 'toto@gmail.com', 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}'),
+(3, 'titi', '$argon2id$v=19$m=65536,t=4,p=1$aU4yVmVjR3ZjR0k3UE1udA$CfVGv5+vWfMmbEt6+CApqoFab+EofyxFWl1Xgxdkx6A', 'titi@gmail.com', 'a:1:{i:0;s:9:\"ROLE_USER\";}');
 
 --
--- Indexes for table `news`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `order`
---
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_F5299398DE894F8D` (`service_delivery_id`),
-  ADD KEY `IDX_F5299398A76ED395` (`user_id`);
-
---
--- Indexes for table `service_delivery`
---
-ALTER TABLE `service_delivery`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order`
---
-ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `service_delivery`
---
-ALTER TABLE `service_delivery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `order`
+-- Contraintes pour la table `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `FK_F5299398A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),

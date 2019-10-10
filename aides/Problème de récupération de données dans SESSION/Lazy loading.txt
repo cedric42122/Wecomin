@@ -1,0 +1,3 @@
+Lazy loading = pas de chargement automatique (il faut get)
+
+heager loading = Obliger à get toutes les données (à rajouter dans sur la liaison de l'entity (manyToOne....)

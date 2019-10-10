@@ -63,30 +63,11 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/userModification", name="userModification")
      */
-    public function userModification(Request $request, ObjectManager $manager)
+    public function userModification()
     {
         // Récupération de tous les utilisateurs en BDD
-        $repo = $this->getDoctrine()->getRepository(User::class);
-        $users = $repo->findAll();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();;
 
-
-         foreach ($users as $user) {
-
-            //Formulaire modification utilisateur
-            $form = $this->createFormBuilder($user)
-                ->add('username')
-                ->add('email')
-                ->add('roles')
-                ->getForm();
-
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $manager->persist($form);
-                $manager->flush();
-
-                return $this->redirectToRoute('userModification');
-            }
-        } 
         return $this->render('admin/userChange.html.twig', [
             'controller_name' => 'SecurityController',
             'users' => $users,
@@ -98,7 +79,6 @@ class SecurityController extends AbstractController
      */
     public function actionModification(Request $request, ObjectManager $manager)
     {
-
         $id = $request->request->get('id');
 
         // Récupération des données du formulaire
@@ -112,15 +92,11 @@ class SecurityController extends AbstractController
         // Récupération de l'objet user en base
         $userBdd = $this->getDoctrine()->getRepository(User::class)->findOneById($id);
 
-
         // Affection du role souhaité à l'utilisateur concerné
-        $userBdd->setUsername($username);
-        $userBdd->setEmail($email);
-        $userBdd->setRoles($role);
+        $userBdd->setUsername($username)->setEmail($email)->setRoles($role);
 
         $manager->persist($userBdd);
         $manager->flush();
-
 
         return $this->redirectToRoute('userModification');
     }
@@ -143,7 +119,6 @@ class SecurityController extends AbstractController
      */
     public function ajaxUserSelectedAction(Request $request)
     {
-
         $id = $request->request->get('idUtilisateur');
 
         // Récupération de tous les utilisateurs en BDD
