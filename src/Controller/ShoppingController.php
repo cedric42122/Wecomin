@@ -50,22 +50,4 @@ class ShoppingController extends AbstractController
             'createServiceForm' => $form->createView()
         ]);
     }
-    /**
-     * @Route("/admin/serviceChange", name="serviceChange")
-     */
-    public function serviceChange()
-    {
-        $repo = $this->getDoctrine()->getRepository(ServiceDelivery::class);
-        $serviceChange = array_map(function ($serviceDelivery) {
-            return $serviceDelivery->getTitle();
-        }, $repo->findAll());
-        
-        // dd($serviceChange);
-
-        return $this->render('admin/serviceChange.html.twig', [
-            'controller_name' => 'shoppingController',
-            'services' => $serviceChange,
-
-        ]);
-    }
 }

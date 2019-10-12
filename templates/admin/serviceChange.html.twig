@@ -4,13 +4,15 @@
 {% endblock %}
 
 {% block body %}
-<h2>hello
-</h2>
+    <div class="">
+        <label>CHOISIR UNE PRESTATION A MODIFIER</label>
+        <select id="selectService">
+            <option value=""></option>
             {% for service in services %}
-           <a href="{{ path ('serviceForm', {'id': createServiceForm.id}) }}">{{ service }} Prestation à modifier</a> 
-
-                   {# {{ dump(service) }} #}
+                <option value="{{ service.id }}">{{ service.title }}</option>
             {% endfor %}
-
+        </select>
+        <div id="formServiceChange"></div>
+    </div>
 
 {% endblock %}

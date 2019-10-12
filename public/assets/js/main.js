@@ -1,15 +1,17 @@
+
+// Requête Ajax pour modification d'un utilisateur
 $('#selectUser').change(function() {
     
-    var idUtilisateur = this.value;
+    var idUser = this.value;
 
     $.ajax({
-        url: "/admin/ajaxSelect",
+        url: "/admin/ajaxUserSelect",
         type: "POST",
         data: {
-            idUtilisateur: idUtilisateur
+            idUser: idUser
         },
         success: function(result){
-            $('#formulaireModif').html(result);
+            $('#formUserChange').html(result);
         },
         error: function(){
         },
@@ -17,3 +19,30 @@ $('#selectUser').change(function() {
         }
     })
 });
+
+// Requête Ajax pour modification d'une prestation
+$('#selectService').change(function() {
+    
+    var idService = this.value;
+
+    $.ajax(
+        console.log('PPL'),
+        {
+        url: "/admin/ajaxServiceSelect",
+        type: "POST",
+        data: {
+            idService: idService
+        },
+        success: function(result){
+            console.log('SUCCESS !!!!!')
+            $('#formServiceChange').html(result);
+        },
+        error: function(){
+            console.log('ERROR !!!!!')
+        },
+        complete: function(){
+            console.log('COMPLETE !!!!!!')
+        }
+    })
+});
+
