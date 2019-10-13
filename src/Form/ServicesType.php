@@ -21,7 +21,7 @@ class ServicesType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('picture', FileType::class)
             ->add('price', MoneyType::class)
-            ->add('promotion', CheckboxType::class);
+            ->add('promotion');
     }
 
     public function configureOptions(OptionsResolver $resolver)

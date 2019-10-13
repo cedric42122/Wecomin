@@ -26,7 +26,6 @@ $('#selectService').change(function() {
     var idService = this.value;
 
     $.ajax(
-        console.log('PPL'),
         {
         url: "/admin/ajaxServiceSelect",
         type: "POST",
@@ -34,14 +33,12 @@ $('#selectService').change(function() {
             idService: idService
         },
         success: function(result){
-            console.log('SUCCESS !!!!!')
             $('#formServiceChange').html(result);
         },
         error: function(){
-            console.log('ERROR !!!!!')
         },
         complete: function(){
-            console.log('COMPLETE !!!!!!')
+            
         }
     })
 });

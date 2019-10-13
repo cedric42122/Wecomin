@@ -10,8 +10,32 @@
     {{ form_row(serviceChangeForm.promotion ) }}
 
     <input type="hidden" name="id" value="{{idService.id}}">
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalServiceChange">
+  MODIFIER
+</button>
 
-    <input type="submit" value="MODIFIER">
+<!-- Modal -->
+<div class="modal fade" id="modalServiceChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">MODIFICATION DE LA PRESTATION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Voulez-vous vraiment appliquer les modifications ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ANNULER</button>
+        <button type="submit" class="btn btn-primary">MODIFIER</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     {{ form_end(serviceChangeForm) }}
 
 </form>

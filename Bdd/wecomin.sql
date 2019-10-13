@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 10 oct. 2019 à 10:57
+-- Généré le :  Dim 13 oct. 2019 à 16:18
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.5
 
@@ -98,15 +98,16 @@ CREATE TABLE IF NOT EXISTS `service_delivery` (
   `price` int(11) NOT NULL,
   `promotion` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `service_delivery`
 --
 
 INSERT INTO `service_delivery` (`id`, `title`, `description`, `picture`, `price`, `promotion`) VALUES
-(1, 'Découverte internet', 'Apprenez à découvrir les basics d\'internet...', '/uploads/internet-5d9f0d6c681ff.jpeg', 100, 1),
-(2, 'Coaching Web', 'Apprenez à utiliser internet dans votre business', '/uploads/coaching-5d9f0da8939c3.jpeg', 250, 1);
+(1, 'Découverte d\'internet', 'Apprenez à découvrir les basics d\'internet...', '/uploads/internet-5d9f0d6c681ff.jpeg', 100, 1),
+(2, 'Coaching Web', 'Apprenez à utiliser internet dans votre business', '/uploads/coaching-5d9f0da8939c3.jpeg', 250, 1),
+(3, 'Internet et la sécurité', 'Surfer en toute sécurité', '/uploads/security-5da2d7f7e1a79.jpeg', 150, 1);
 
 -- --------------------------------------------------------
 
