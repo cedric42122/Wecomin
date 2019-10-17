@@ -42,4 +42,3 @@ $('#selectService').change(function() {
         }
     })
 });
-

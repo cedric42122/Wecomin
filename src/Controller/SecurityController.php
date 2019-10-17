@@ -7,13 +7,12 @@ use App\Entity\User;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends AbstractController
 {
@@ -98,10 +97,8 @@ class SecurityController extends AbstractController
         // Récupération des données du formulaire
         $form = $request->request->get('form');
 
-
         $username = $form['username'];
         $email = $form['email'];
-
         $role = $form['roles'];
 
         // Récupération de l'objet User en base
@@ -116,7 +113,6 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('userChange');
     }
 
-
     /**
      * @Route("/admin/actionServiceChange", name="actionServiceChange")
      */
@@ -125,16 +121,20 @@ class SecurityController extends AbstractController
         $id = $request->request->get('id');
 
         // Récupération des données du formulaire
-        $form = $request->request->get('form');                                                             
-
+        $form = $request->request->get('form');
 
         $title = $form['title'];
         $description = $form['description'];
         $picture = $form['picture'];
         $price = $form['price'];
+
+        //  dd($form);
+
         $promotion = $form['promotion'];
 
-        // Récupération de l'objet ServiceDelivery en base
+
+
+        // Récupération de l'objet Service en base
         $serviceBdd = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
 
         // Affection du champ souhaité au service concerné
@@ -143,7 +143,7 @@ class SecurityController extends AbstractController
         $manager->persist($serviceBdd);
         $manager->flush();
 
-        return $this->redirectToRoute('serviceChange');                                                 
+        return $this->redirectToRoute('serviceChange');
     }
 
     /**
@@ -172,7 +172,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/serviceChange", name="serviceChange")
      */
-    public function serviceChange()
+    public function serviceChange(ObjectManager $manager)
     {
         // Récupération de tous les services en BDD
         $services = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findAll();;
@@ -189,22 +189,23 @@ class SecurityController extends AbstractController
     public function ajaxServiceSelectedAction(Request $request)
     {
         $id = $request->request->get('idService');
-        // dd($id);
 
         // Récupération de tous les services en BDD
-        $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
-
-        // dd($service);
+        $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->find($id);
 
         // Formulaire modification service
         $form = $this->createFormBuilder($service)
+
             ->add('title')
             ->add('description')
             ->add('picture')
             ->add('price')
-            ->add('promotion')
+            ->add('promotion', CheckboxType::class, [
+                'required' => false,
+            ])
+            
             ->getForm();
-
+        
         return $this->render('admin/formServiceChange.html.twig', [
             'serviceChangeForm' => $form->createView(),
             'idService' => $service,
