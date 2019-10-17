@@ -189,12 +189,9 @@ class SecurityController extends AbstractController
     public function ajaxServiceSelectedAction(Request $request)
     {
         $id = $request->request->get('idService');
-        // dd($id);
 
         // Récupération de tous les services en BDD
         $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
-
-        // dd($service);
 
         // Formulaire modification service
         $form = $this->createFormBuilder($service)
