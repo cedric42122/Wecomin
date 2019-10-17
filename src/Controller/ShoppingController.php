@@ -44,7 +44,6 @@ class ShoppingController extends AbstractController
             return $this->redirectToRoute('serviceForm');
         }
 
-
         return $this->render('shopping/serviceForm.html.twig', [
             'controller_name' => 'ShoppingController',
             'createServiceForm' => $form->createView()

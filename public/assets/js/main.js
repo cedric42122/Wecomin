@@ -37,8 +37,7 @@ $('#selectService').change(function() {
         },
         error: function(){
         },
-        complete: function(){
-            
+        complete: function(){    
         }
     })
 });
