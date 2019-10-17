@@ -6,13 +6,16 @@ use App\Entity\ServiceDelivery;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends AbstractController
@@ -201,9 +204,12 @@ class SecurityController extends AbstractController
             ->add('title')
             ->add('description')
             ->add('picture')
-            ->add('price')
-            ->add('promotion')
+            ->add('price', )
+            ->add('promotion',CheckboxType::class, [
+                'required' => false
+            ])
             ->getForm();
+            
 
         return $this->render('admin/formServiceChange.html.twig', [
             'serviceChangeForm' => $form->createView(),
