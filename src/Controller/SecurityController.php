@@ -101,10 +101,8 @@ class SecurityController extends AbstractController
         // Récupération des données du formulaire
         $form = $request->request->get('form');
 
-
         $username = $form['username'];
         $email = $form['email'];
-
         $role = $form['roles'];
 
         // Récupération de l'objet User en base
@@ -119,7 +117,6 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('userChange');
     }
 
-
     /**
      * @Route("/admin/actionServiceChange", name="actionServiceChange")
      */
@@ -128,16 +125,28 @@ class SecurityController extends AbstractController
         $id = $request->request->get('id');
 
         // Récupération des données du formulaire
-        $form = $request->request->get('form');                                                             
-
+        $form = $request->request->get('form');
 
         $title = $form['title'];
         $description = $form['description'];
         $picture = $form['picture'];
         $price = $form['price'];
-        $promotion = $form['promotion'];
 
-        // Récupération de l'objet ServiceDelivery en base
+        //  dd($form);
+
+        if(isset($form['promotion'])) {
+            $promotion = $form['promotion'];
+        }
+        else {
+            $promotion = '';
+        }
+
+        // $promotion = $form['promotion'] ?? '';
+
+
+
+
+        // Récupération de l'objet Service en base
         $serviceBdd = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
 
         // Affection du champ souhaité au service concerné
@@ -146,7 +155,7 @@ class SecurityController extends AbstractController
         $manager->persist($serviceBdd);
         $manager->flush();
 
-        return $this->redirectToRoute('serviceChange');                                                 
+        return $this->redirectToRoute('serviceChange');
     }
 
     /**
@@ -175,7 +184,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/serviceChange", name="serviceChange")
      */
-    public function serviceChange()
+    public function serviceChange(ObjectManager $manager)
     {
         // Récupération de tous les services en BDD
         $services = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findAll();;
@@ -192,15 +201,13 @@ class SecurityController extends AbstractController
     public function ajaxServiceSelectedAction(Request $request)
     {
         $id = $request->request->get('idService');
-        // dd($id);
 
         // Récupération de tous les services en BDD
         $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
 
-        // dd($service);
-
         // Formulaire modification service
         $form = $this->createFormBuilder($service)
+
             ->add('title')
             ->add('description')
             ->add('picture')
