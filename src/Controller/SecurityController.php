@@ -130,7 +130,15 @@ class SecurityController extends AbstractController
 
         //  dd($form);
 
-        $promotion = $form['promotion'];
+        if(isset($form['promotion'])) {
+            $promotion = $form['promotion'];
+        }
+        else {
+            $promotion = '';
+        }
+
+        // $promotion = $form['promotion'] ?? '';
+
 
 
 
