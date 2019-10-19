@@ -1,11 +1,25 @@
 @font-face {
   font-family: "Poppins-Bold";
-  src: url("/public/assets/fonts/Poppins/Poppins-Bold.ttf");
+  src: url("/assets/fonts/Poppins/Poppins-Bold.ttf");
   font-display: auto;
 }
 
 @font-face {
     font-family: "Rubik-Regular";
-    src: url("/public/assets/fonts/Rubik/Rubik-Regular.ttf");
+    src: url("/assets/fonts/Rubik/Rubik-Regular.ttf");
     font-display: auto;
 }
+
+@font-face {
+  font-family: "jomolhari";
+  src: url("/assets/fonts/Jomolhari/Jomolhari-Regular.ttf");
+  font-display: auto;
+}
+
+@font-face {
+  font-family: "Liu_Jian_Mao_Cao";
+  src: url("/assets/fonts/Liu_Jian_Mao_Cao/LiuJianMaoCao-Regular.ttf");
+  font-display: auto;
+}
+
+

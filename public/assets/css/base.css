@@ -1,8 +1,10 @@
-html,
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   margin: 0;
-  padding-bottom: 410px;
-  /* overflow-x: hidden; */
+  padding: 0;
 }
 
 .navbar {
@@ -11,12 +13,12 @@ body {
 
 .navbar,
 .page-footer {
-  font-family: "Poppins-Bold";
+  font-family: "Rubik-Regular";
 }
 
 .nav-link {
   font-size: 25px;
-  color: aliceblue !important;
+  color: #FFF8AB !important;
 }
 
 .connection {
