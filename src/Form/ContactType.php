@@ -2,31 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\ServiceDelivery;
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ServicesType extends AbstractType
+class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('picture', FileType::class)
-            ->add('price', MoneyType::class)
-            ->add('promotion');
+        ->add('firstname', TextType::class)
+        ->add('lastname', TextType::class)
+        ->add('phone', TextType::class)
+        ->add('email', EmailType::class)
+        ->add('message', TextAreaType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ServiceDelivery::class,
+            'data_class' => Contact::class,
         ]);
     }
 }

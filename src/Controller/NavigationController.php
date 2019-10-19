@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\ServiceDelivery;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class NavigationController extends AbstractController
@@ -55,10 +59,22 @@ class NavigationController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact()
+    public function contact(Request $request, ContactNotification $notification)
     {
-        return $this->render('contact/index.html.twig', [
+
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $notification->notify($contact);
+            $this->addFlash('success', 'Votre message a bien été envoyé !');
+            return $this->redirectToRoute('contact');
+        };
+
+        return $this->render('contact/contact.html.twig', [
             'controller_name' => 'NavigationController',
+            'form' => $form->createView()
         ]);
     }
 
