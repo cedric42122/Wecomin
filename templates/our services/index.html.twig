@@ -4,18 +4,27 @@
 {% endblock %}
 
 {% block body %}
-
-    <div class="">
-
+    <div class="bg-light p-3">
+        <h1>Les prestations</h1>
+    </div>
+    <div class="row">
         {% for service in services %}
-            <services>
-                <h1>{{ service.title }}</h1>
-                <img src="{{ service.picture }}" alt="image de la prestation">
-                <div>{{ service.description | raw }}</div>
-                <div>{{ service.price }}</div>
+            <services class="col-4 mt-4">
+                <div class="border border-dark rounded p-2 clearfix">
+                    <h2>
+                        {{ service.title }}
+                        -
+                        {{ service.price }}€
+                    </h2>
+                    <img class="img-fluid rounded" src="{{ service.picture }}" alt="image de {{ service.title }}">
+                    <div>{{ service.description | raw }}</div>
+                    <hr>
+                    <a class="btn btn-success float-right" href="{{ path('cart_add', {'id': service.id}) }}">
+                        <i class="fas fa-shopping-cart mr-1"></i>
+                        Ajouter
+                    </a>
+                </div>
             </services>
         {% endfor %}
-
     </div>
-
 {% endblock %}
