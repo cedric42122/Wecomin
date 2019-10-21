@@ -4,8 +4,10 @@
 {% endblock %}
 
 {% block body %}
-    <div class="bg-light p-3">
+    <div class="row bg-light p-3">
         <h1>Les prestations</h1>
+        <a href="{{ path('cart_index') }}" class="btn btn-primary btn-info">Votre panier
+        <i class="fas fa-shopping-cart"></i> </a>
     </div>
     <div class="row">
         {% for service in services %}

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+
 class ShoppingController extends AbstractController
 {
     /**
@@ -90,7 +91,7 @@ class ShoppingController extends AbstractController
     {
         \Stripe\Stripe::setApiKey('pk_test_8Lgfp4jEhIIkMPlu2oiM8ToN00zRv85lFd');
     
-        \Stripe\Charge::create([
+        $intent = \Stripe\PaymentIntent::create([
             'amount' => 2000,
             'currency' => 'eur',
             'source' => $request->request->get('stripeToken'),
