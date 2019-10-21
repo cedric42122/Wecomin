@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>
             {% block title %}Wecomin
             {% endblock %}
@@ -52,6 +52,11 @@
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user.roles.0 |default(null) %}
+                        <li class="nav-item">
+                            <a class="nav-link" a href="{{ path('admin') }}">Administrateur</a>
                         </li>
                     {% endif %}
                 </ul>
