@@ -22,10 +22,18 @@ body {
   color: #FFF8AB !important;
 }
 
+.nav-link:hover {
+ opacity: 0.6;
+}
+
 .connection {
   margin-left: 150px;
 }
 
 #logo {
   margin-top: 20px;
+}
+
+h1 {
+  font-family: "Poppins-Bold";
 }
