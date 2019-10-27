@@ -1,4 +1,3 @@
-
 // Requête Ajax pour modification d'un utilisateur
 $('#selectUser').change(function() {
     

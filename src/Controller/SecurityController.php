@@ -8,7 +8,6 @@ use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -42,7 +41,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/connexion", name="security_login")
+     * @Route("/Connexion", name="security_login"))
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {

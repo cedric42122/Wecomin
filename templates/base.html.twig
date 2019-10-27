@@ -1,17 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>
-            {% block title %}Wecomin{% endblock %}
+            {% block title %}Wecomin
+            {% endblock %}
         </title>
         <link rel="shortcut icon" href="/assets/Logo/Logo Wecomin Téléphone.png" type="image/x-icon">
-        <link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="/assets/fontawesome-free-5.11.2-web/css/all.css">
-        <link rel="stylesheet" href="/assets/fonts/fonts.css"> 
-        <link rel="stylesheet" href="/assets/css/base.css">
-        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="/assets/fonts/fonts.css">
+        <link rel="stylesheet" href="/assets/css/base.css"> {% block stylesheets %}{% endblock %}
         </head>
         <body>
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #343A40;">
@@ -46,7 +48,16 @@
                                 <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link connection" data-toggle="modal" data-target="#exampleModal" href="{{ path('security_login') }}">Connexion</a>
+                                <a class="nav-link connection" data-toggle="modal" data-target="#modalConnexion" href="{{ path('security_login') }}">Connexion</a>
+                                {# MODAL CONNEXION #}
+                                <div class="modal fade" id="modalConnexion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            {{ render(controller('App\\Controller\\SecurityController::login'))}}
+                                        </div>
+                                    </div>
+                                </div>
+                                {# FIN MODAL CONNEXION #}
                             </li>
                         {% else %}
                             <li class="nav-item">
@@ -59,14 +70,16 @@
                             </li>
                         {% endif %}
                     </ul>
-                </div>
-            </nav>
-            {% block body %}{% endblock %}
-            <script src="/assets/js/jquery-3.4.1.min.js"></script>
-            <script src="/assets/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="/public/assets/fontawesome-free-5.11.2-web/js/all.js"></script>
-            <script src="/assets/js/main.js"></script>
-            {% block javascripts %}{% endblock %}
+                </li>
+            </div>
         </body>
     </html>
+</nav>
+{% block body %}{% endblock %}
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="/assets/fontawesome-free-5.11.2-web/js/all.js"></script>
+<script src="/assets/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+{% block javascripts %}{% endblock %}</body></html></body></html>
