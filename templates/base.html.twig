@@ -4,73 +4,69 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>
-            {% block title %}Wecomin
-            {% endblock %}
+            {% block title %}Wecomin{% endblock %}
         </title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="shortcut icon" href="/assets/Logo/Logo Wecomin Téléphone.png" type="image/x-icon">
         <link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="/assets/fontawesome-free-5.11.2-web/css/all.css">
-        <link rel="shortcut icon" href="/assets/Logo/Logo Wecomin Téléphone.png" type="image/x-icon">
+        <link rel="stylesheet" href="/assets/fonts/fonts.css"> 
         <link rel="stylesheet" href="/assets/css/base.css">
-        <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #343A40;">
-            <a class="navbar-brand">
-                <img id="logo" src="/assets/Logo/Logo Wecomin png.png" alt="Logo" style="width:250px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        {% block stylesheets %}{% endblock %}
+        </head>
+        <body>
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #343A40;">
+                <a class="navbar-brand">
+                    <img id="logo" src="/assets/Logo/Logo Wecomin png.png" alt="Logo" style="width:250px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ path('home') }}">Accueil
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('about') }}">A propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('news') }}">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('services') }}">Nos prestations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-                    </li>
-                    {% if not app.user %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ path('home') }}">Accueil
+                                <span class="sr-only">(current)</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link connection" href="{{ path('security_login') }}">Connexion</a>
+                            <a class="nav-link" href="{{ path('about') }}">A propos</a>
                         </li>
-                    {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
+                            <a class="nav-link" href="{{ path('news') }}">News</a>
                         </li>
-                    {% endif %}
-                    {% if app.user.roles.0 |default(null) %}
                         <li class="nav-item">
-                            <a class="nav-link" a href="{{ path('admin') }}">Administrateur</a>
+                            <a class="nav-link" href="{{ path('services') }}">Nos prestations</a>
                         </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-        {% block body %}{% endblock %}
-
-        <script src="/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="/assets/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
-        <script src="/public/assets/fontawesome-free-5.11.2-web/js/all.js"></script>
-        <script src="/assets/js/main.js"></script>
-        {% block javascripts %}{% endblock %}
-
-
-    </body>
-</html>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                        </li>
+                        {% if not app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link connection" data-toggle="modal" data-target="#exampleModal" href="{{ path('security_login') }}">Connexion</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
+                            </li>
+                        {% endif %}
+                        {% if app.user.roles.0 |default(null) %}
+                            <li class="nav-item">
+                                <a class="nav-link" a href="{{ path('admin') }}">Administrateur</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+            {% block body %}{% endblock %}
+            <script src="/assets/js/jquery-3.4.1.min.js"></script>
+            <script src="/assets/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="/public/assets/fontawesome-free-5.11.2-web/js/all.js"></script>
+            <script src="/assets/js/main.js"></script>
+            {% block javascripts %}{% endblock %}
+        </body>
+    </html>

@@ -1,34 +1,74 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h2>Connexion</h2>
 
-    {% if error %}
-        <div class="alert alert-danger">
-            <ul class="list-unstyled mb-0">
-                <li><span class="initialism form-error-icon badge badge-danger">Error</span>
-                    <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
-                </li>
-            </ul>
-        </div>
-    {% endif %}
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CONNEXION</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <span class="initialism form-error-icon badge badge-danger">Error</span>
+                                    <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
 
-    <form action="{{ path('security_login') }}" method="post">
-        <div class="form-group">
-            <input placeholder="Adresse email..." required name="_username" type="text" class="form-control">
-        </div>
-        <div class="form-group">
-            <input placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
-        </div>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me">
-                Se rappeler de moi ?
-            </label>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-succes">Connexion</button>
-        </div>
-    </form>
+                    <form action="{{ path('security_login') }}" method="post">
+                        <div class="form-group">
+                            <input placeholder="Adresse email..." required name="_username" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
+                        </div>
+                        <div class="checkbox mb-3"></div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-succes">Connexion</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
 
+                </div>
+                {# <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> #}
+            </div>
+        </div>
+    </div>
+
+    {# <h2>Connexion</h2>
+    
+        {% if error %}
+            <div class="alert alert-danger">
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <span class="initialism form-error-icon badge badge-danger">Error</span>
+                        <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    
+        <form action="{{ path('security_login') }}" method="post">
+            <div class="form-group">
+                <input placeholder="Adresse email..." required name="_username" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
+            </div>
+            <div class="checkbox mb-3"></div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-succes">Connexion</button>
+            </div>
+        </form> #}
 {% endblock %}
