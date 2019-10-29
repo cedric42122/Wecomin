@@ -1,3 +1,23 @@
+// Bandeau cookie 
+window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#252e39"
+      },
+      "button": {
+        "background": "transparent",
+        "text": "#14a7d0",
+        "border": "#14a7d0"
+      }
+    },
+    "content": {
+      "message": "\nCe site utilise des cookies pour vous garantir la meilleure expérience sur notre site.",
+      "dismiss": "Acceptez !",
+      "link": "En savoir plus "
+    }
+  });
+
+
 // Requête Ajax pour modification d'un utilisateur
 $('#selectUser').change(function() {
     
