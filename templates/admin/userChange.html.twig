@@ -1,10 +1,8 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Modifier un utilisateur
-{% endblock %}
+{% block title %}Modifier un utilisateur{% endblock %}
 
 {% block body %}
-    <div class="">
         <label>CHOISIR UN UTILISATEUR A MODIFIER</label>
         <select id="selectUser">
             <option value=""></option>
@@ -12,7 +10,5 @@
                 <option value="{{ user.id }}">{{ user.username }}</option>
             {% endfor %}
         </select>
-    
         <div id="formUserChange"></div>
-    </div>
 {% endblock %}

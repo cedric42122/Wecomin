@@ -1,21 +1,11 @@
-<div class="container">
+<div class="">
+        <h1 class="text-center">Modification de l'utilisateur {{idUser.username}}</h1>
+        <pre>
+            {{ dump(userChangeForm) }}
+        </pre>
     <form action="/admin/actionUserChange" class="border" method="POST">
-        <h1 class="text-center">Modification de l'utilisateur
-            {{idUser.username}}</h1>
-
         {{ form_start(userChangeForm) }}
-        {{ form_label(userChangeForm.username, 'Nom') }}
-        {{ form_label(userChangeForm.email, 'Email') }}
-        {{ form_label(userChangeForm.roles, 'Role') }}
-
-        <input
-        type="hidden" name="id" value="{{idUser.id}}">
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserChange">
-            MODIFIER
-        </button>
-
+        <input type="hidden" name="id" value="{{idUser.id}}">
         <!-- Modal -->
         <div class="modal fade" id="modalUserChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -37,5 +27,11 @@
             </div>
         </div>
         {{ form_end(userChangeForm) }}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserChange">
+            MODIFIER
+        </button>
     </form>
 </div>
+        {# {{ form_label(userChangeForm.username, 'NOM') }}
+        {{ form_label(userChangeForm.email ) }}
+        {{ form_label(userChangeForm.roles ) }} #}

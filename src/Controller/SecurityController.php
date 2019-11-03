@@ -8,6 +8,8 @@ use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -163,7 +165,9 @@ class SecurityController extends AbstractController
 
         // Formulaire modification utilisateur
         $form = $this->createFormBuilder($user)
-            ->add('username')
+            ->add('username', TextType::class, [
+                'label' => 'Nom d\'utilisateur'
+            ])
             ->add('email')
             ->add('roles')
             ->getForm();
@@ -177,7 +181,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/serviceChange", name="serviceChange")
      */
-    public function serviceChange(ObjectManager $manager)
+    public function serviceChange()
     {
         // Récupération de tous les services en BDD
         $services = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findAll();;
