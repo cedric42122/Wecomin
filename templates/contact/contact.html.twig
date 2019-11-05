@@ -1,17 +1,16 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Contact
-{% endblock %}
+{% block title %}Contact{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="/assets/css/contact.css">
 {% endblock %}
-
 
 {% block body %}
     <div id="bgContact" class="container">
         <div class="row mt-5 d-flex justify-content-around">
             <div>
-                <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=4.1405582427978525%2C45.83776961260888%2C4.206304550170899%2C45.872560923854486&amp;layer=mapnik&amp;marker=45.855167989021616%2C4.173431396484375" style="border: 1px solid black"></iframe><br/><small>
+                <iframe width="625" height="550" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=4.1405582427978525%2C45.83776961260888%2C4.206304550170899%2C45.872560923854486&amp;layer=mapnik&amp;marker=45.855167989021616%2C4.173431396484375" style="border: 1px solid black"></iframe><br/><small>
                     <a href="https://www.openstreetmap.org/?mlat=45.8552&amp;mlon=4.1734#map=14/45.8552/4.1734">Afficher une carte plus grande</a>
                 </small>
             </div>
@@ -39,38 +38,21 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer
         class="fixed-bottom page-footer font-small pt-4" style="background-color: #343A40;">
-
-        <!-- Footer Links -->
         <div
             class="container-fluid text-center text-md-left">
-
-            <!-- Grid row -->
             <div
                 class="row">
-
-                <!-- Grid column -->
                 <div
                     class="col-md-6 mt-md-0 mt-3">
-
-                    <!-- Content -->
                     <h5 class="text-uppercase">Footer Content</h5>
                     <p>Here you can use rows and columns to organize your footer content.</p>
-
                 </div>
-                <!-- Grid column -->
-
                 <hr
                 class="clearfix w-100 d-md-none pb-3">
-
-                <!-- Grid column -->
                 <div
                     class="col-md-3 mb-md-0 mb-3">
-
-                    <!-- Links -->
-
                     <ul class="list-unstyled">
                         <li>
                             <a href="#!">Link 1</a>
@@ -81,14 +63,8 @@
                     </ul>
 
                 </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
                 <div
                     class="col-md-3 mb-md-0 mb-3">
-
-                    <!-- Links -->
-
                     <ul class="list-unstyled">
                         <li>
                             <a href="{{ path('admin') }}">Administrateur</a>
@@ -99,20 +75,10 @@
                     </ul>
 
                 </div>
-                <!-- Grid column -->
-
             </div>
-            <!-- Grid row -->
-
         </div>
-        <!-- Footer Links -->
-
-        <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2019 Copyright: WECOMIN
         </div>
-        <!-- Copyright -->
-
     </footer>
-    <!-- Footer -->
     {% block javascripts %}{% endblock %}
 {% endblock %}

@@ -2,13 +2,20 @@ html {
   height: 100%;
 }
 body {
+  background-image: url("/assets/Pictures/Background/BgJaune.jpg");
   overflow-x: hidden;;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+footer {
+  background-color: #736A40 !important;
+ 
+}
+
 .navbar {
+  background-color: #736A40 !important;
   height: 80px;
 }
 
@@ -37,3 +44,4 @@ body {
 h1 {
   font-family: "Poppins-Bold";
 }
+
