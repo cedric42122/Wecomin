@@ -1,25 +1,110 @@
+/* POPPINS */
 @font-face {
   font-family: "Poppins-Bold";
   src: url("/assets/fonts/Poppins/Poppins-Bold.ttf");
   font-display: auto;
 }
 
+/* RUBIK */
 @font-face {
     font-family: "Rubik-Regular";
     src: url("/assets/fonts/Rubik/Rubik-Regular.ttf");
     font-display: auto;
 }
 
+/* LORA */
 @font-face {
-  font-family: "jomolhari";
-  src: url("/assets/fonts/Jomolhari/Jomolhari-Regular.ttf");
+  font-family: "Lora-Regular";
+  src: url("/assets/fonts/Lora/Lora-Regular.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "Lora-Bold";
+  src: url("/assets/fonts/Lora/Lora-Bold.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "Lora-Bold-Italic";
+  src: url("/assets/fonts/Lora/Lora-BoldItalic.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "Lora-Italic";
+  src: url("/assets/fonts/Lora/Lora-Italic.ttf");
   font-display: auto;
 }
 
+/* NUNITO_SANS */
 @font-face {
-  font-family: "Liu_Jian_Mao_Cao";
-  src: url("/assets/fonts/Liu_Jian_Mao_Cao/LiuJianMaoCao-Regular.ttf");
+  font-family: "NunitoSans-Black";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-Black.ttf");
   font-display: auto;
 }
+@font-face {
+  font-family: "NunitoSans-BlackItalic";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-BlackItalic.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-Bold";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-Bold.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-BoldItalic";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-BoldItalic.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-ExtraBold";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-ExtraBold.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-ExtraBoldItalic";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-ExtraBoldItalic.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-ExtraLight";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-ExtraLight.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-ExtraLightItalic";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-ExtraLightItalic.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-Italic";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-Italic.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-Light";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-Light.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-LightItalic";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-LightItalic.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-Regular";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-Regular.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-SemiBold";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-SemiBold.ttf");
+  font-display: auto;
+}
+@font-face {
+  font-family: "NunitoSans-SemiBoldItalic";
+  src: url("/assets/fonts/Nunito_Sans/NunitoSans-SemiBoldItalic.ttf");
+  font-display: auto;
+}
+
 
 
