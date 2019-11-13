@@ -1,5 +1,19 @@
 body {
-    background-image: url('/assets/Pictures/Background/BgJaune.jpg');
+    background-image: url('/assets/Pictures/Background/inscription.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
+
+.form-control {
+    display: inline !important;
+    font-family: "Rubik-Regular";
+}
+
+#registrationForm {
+    font-family: "NunitoSans-ExtraBold";
+    color: #009FE3;
+    font-size: 30px;
+}
+
+

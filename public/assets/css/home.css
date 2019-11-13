@@ -1,4 +1,5 @@
 body {
+    background-image: url("/assets/Pictures/Background/BgJaune.jpg");
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -6,9 +7,7 @@ body {
 }
 
 h1, h2 {
-    font-family: "Liu_Jian_Mao_Cao";
     color: #FFF8AB;
-    /* color: #F0B27A; */
     font-size: 150px;
     text-align: center;
 }

@@ -1,0 +1,33 @@
+body {
+    background-image: url("/assets/Pictures/Background/contactBg2.jpg");
+    background-size: 100% auto;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#letter {
+    width: 80px;
+}
+
+#formContact label {
+    font-family: "NunitoSans-ExtraBold";
+    color: #737063;
+    font-size: 30px;
+}
+
+#map {
+    width: 625px;
+    height: 550px;
+    border-radius: .25rem;
+}
+
+#linkMap {
+    color: #737063;
+    text-decoration: none !important;
+}
+
+#testH1 {
+    text-shadow: 2px 2px 2px white;
+}

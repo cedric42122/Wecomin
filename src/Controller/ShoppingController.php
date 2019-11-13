@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\ServiceDelivery;
 use App\Form\ServicesType;
 use App\Service\Cart\CartService;
@@ -87,16 +88,20 @@ class ShoppingController extends AbstractController
     /**
      * @Route("/payment", name="payement")
      */
-    public function paymentService(Request $request)
+    public function paymentForm(Order $order, Request $request)
     {
+        $amount = $order->getTotalAmount() * 100;
         \Stripe\Stripe::setApiKey('pk_test_8Lgfp4jEhIIkMPlu2oiM8ToN00zRv85lFd');
-    
+
         $intent = \Stripe\PaymentIntent::create([
-            'amount' => 2000,
+            'amount' => $amout,
             'currency' => 'eur',
-            'source' => $request->request->get('stripeToken'),
-            'description' => 'Paiement de test',
+            'payment_method_types' => ['card'],            
+            'metadata' => ['order_id' => $order->getId()],
         ]);
-        return $this->render('shopping/payment.html.twig');
+        return $this->render('shopping/payment.html.twig', [
+            'order' => $order,
+            'clientPayment' => $intent->client_secret
+        ]);
     }
 }
