@@ -23,6 +23,16 @@ class NavigationController extends AbstractController
     }
 
     /**
+     * @Route("/legalNotice", name="legalNotice")
+     */
+    public function legalNotice()
+    {
+        return $this->render('legal notice/legalNotice.html.twig', [
+            'controller_name' => 'NavigationController',
+        ]);
+    }
+    
+    /**
      * @Route("/about", name="about")
      */
     public function infos()

@@ -1,0 +1,10 @@
+body {
+    background-image: url("/assets/Pictures/Background/BgJaune.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.services {
+background-color: white;
+}
