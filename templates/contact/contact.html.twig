@@ -8,15 +8,14 @@
 {% endblock %}
 
 {% block body %}
-	<div class="h-100 w-100">
-		<div class="row mt-5 d-flex justify-content-around">
-			<div class="col-4">
+		<div class="row d-flex justify-content-around">
+			<div class="mt-5 col-4">
 				<iframe id="map" src="https://www.openstreetmap.org/export/embed.html?bbox=4.1405582427978525%2C45.83776961260888%2C4.206304550170899%2C45.872560923854486&amp;layer=mapnik&amp;marker=45.855167989021616%2C4.173431396484375" style="border: 1px solid black"></iframe>
 				<small>
 					<a id="linkMap" href="https://www.openstreetmap.org/?mlat=45.8552&amp;mlon=4.1734#map=14/45.8552/4.1734">Afficher une carte plus grande</a>
 				</small>
 			</div>
-			<div class="col-6 mt-5">
+			<div class="mt-5 col-6">
 				<h1>Nous contacter ...<img class="ml-5" id="letterIcon" src="/assets/Pictures/letter.png" alt="courrier"></h1>
 				<div class="mt-3" id="formContact">
 					{{ form_start(form)}}
@@ -44,17 +43,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<footer class="fixed-bottom page-footer font-small pt-3">
-		<div class="container-fluid">
-			<div class="row d-flex align-items-center">
-				<span class="followUs mx-5">Et suivez-nous sur</span>
-				<a href="https://www.facebook.com/Wecomin-1949256065127675" target="_blanck"><img src="/assets/social_icon/facebook_icon_64px.png" alt="lien facebook"></a>
-				<span class="followUs mx-5">ou encore</span>
-				<a href="https://www.linkedin.com/company/wecomin" target="_blanck"><img src="/assets/social_icon/linkedin_icon_64px.png" alt="lien linkedin"></a>
-				<a id= "legalNotice" href="{{ path('legalNotice') }}">Mentions Légales</a>
-			</div>
+		<div class="row d-flex align-items-center">
+			<span class="followUs mx-5">Et suivez-nous sur</span>
+			<a href="https://www.facebook.com/Wecomin-1949256065127675" target="_blanck"><img src="/assets/social_icon/facebook_icon_64px.png" alt="lien facebook"></a>
+			<span class="followUs mx-5">ou encore</span>
+			<a href="https://www.linkedin.com/company/wecomin" target="_blanck"><img src="/assets/social_icon/linkedin_icon_64px.png" alt="lien linkedin"></a>
+			<a id="legalNotice" href="{{ path('legalNotice') }}">Mentions Légales</a>
 		</div>
 		<div class="footer-copyright text-center py-3">© 2019 Copyright: WECOMIN
 		</div>

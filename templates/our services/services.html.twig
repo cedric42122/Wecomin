@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Nos prestations
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="/assets/css/services.css">
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<h1 class="ml-5">Les prestations</h1>
+		<div>
+			<a href="{{ path('cart_index') }}" class="btn btn-primary btn-info">Votre panier
+				<i class="fas fa-shopping-cart"></i>
+			</a>
+		</div>
+	</div>
+	<div class="row d-flex justify-content-center">
+		{% for service in services %}
+			<services class="col-5 mt-5 mr-4">
+				<div class="services border border-dark rounded p-2 clearfix">
+					<h2>
+						{{ service.title }}
+						-
+						{{ service.price }}€
+					</h2>
+					<img class="img-fluid rounded" src="{{ service.picture }}" alt="image de {{ service.title }}">
+					<div>{{ service.description | raw }}</div>
+					<hr>
+					<a class="btn btn-success float-right" href="{{ path('cart_add', {'id': service.id}) }}">
+						<i class="fas fa-shopping-cart mr-1"></i>
+						Ajouter
+					</a>
+				</div>
+			</services>
+		{% endfor %}
+	</div>
+{% endblock %}

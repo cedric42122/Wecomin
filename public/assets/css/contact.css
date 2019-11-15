@@ -29,14 +29,19 @@ body {
 
 .followUs {
     font-family: "IndieFlower-Regular";
-    font-size: 60px;
+    font-size: 40px;
     color: #FFF8AB;
 }
 
 #legalNotice {
+    margin-left: 30%;
     font-size: 20px;
     color: #FFF8AB;
+}
 
+#legalNotice:hover {
+    text-decoration: none;
+    opacity: 0.6;
 }
 
 .footer-copyright {

@@ -11,9 +11,12 @@ body {
 }
 
 #registrationForm {
-    font-family: "NunitoSans-ExtraBold";
-    color: #009FE3;
+    color: #737063;
     font-size: 30px;
+}
+
+#test {
+    margin-left: 20%;
 }
 
 

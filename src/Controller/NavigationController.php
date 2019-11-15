@@ -60,7 +60,7 @@ class NavigationController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(ServiceDelivery::class);
         $services = $repo->findAll();
 
-        return $this->render('our services/index.html.twig', [
+        return $this->render('our services/services.html.twig', [
             'controller_name' => 'NavigationController',
             'services' => $services
         ]);
