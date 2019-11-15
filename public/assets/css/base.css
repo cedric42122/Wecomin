@@ -41,18 +41,17 @@ footer {
 
 .btn {
   font-family: "Lora-Bold";
-  border-color: #736A40 !important;
-  background-color: #736A40 !important;
-
+  border-color: #009FE3 !important;
+  background-color: #009FE3 !important;
 }
 
 .btn:hover {
-  background-color: #343A40 !important;
-
+  background-color: rgb(3, 149, 211) !important;
 }
 
 h1 {
-  font-family: "Lora-Bold";
+  font-family: "IndieFlower-Regular", cursive;  
+  text-shadow: 2px 2px 2px white;
   color: #009FE3;
-  font-size: 80px;
+  font-size: 100px;
 }

@@ -105,6 +105,14 @@
   src: url("../fonts/Nunito_Sans/NunitoSans-SemiBoldItalic.ttf");
   font-display: auto;
 }
+/* INDIE FLOWER*/
+@font-face {
+  font-family: "IndieFlower-Regular";
+  src: url("../fonts/Indie_Flower/IndieFlower-Regular.ttf");
+  font-display: auto;
+}
+
+
 
 
 

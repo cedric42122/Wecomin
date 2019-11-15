@@ -7,12 +7,11 @@ body {
     overflow: hidden;
 }
 
-#letter {
+#letterIcon {
     width: 80px;
 }
 
 #formContact label {
-    font-family: "NunitoSans-ExtraBold";
     color: #737063;
     font-size: 30px;
 }
@@ -28,6 +27,18 @@ body {
     text-decoration: none !important;
 }
 
-#testH1 {
-    text-shadow: 2px 2px 2px white;
+.followUs {
+    font-family: "IndieFlower-Regular";
+    font-size: 60px;
+    color: #FFF8AB;
+}
+
+#legalNotice {
+    font-size: 20px;
+    color: #FFF8AB;
+
+}
+
+.footer-copyright {
+    color: #FFF8AB;
 }
