@@ -1,3 +1,32 @@
-.cart {
-    background: aliceblue !important;
+body {
+    background-image: url("/assets/Pictures/Background/cartBg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.table {
+    background-color: white;
+}
+
+.table th {
+    font-family: "NunitoSans-ExtraBold";
+    color: #737063;
+    font-size: 30px;
+}
+
+.table td {
+    font-family: "NunitoSans-Regular";
+    color: #737063;
+    font-size: 20px;
+}
+
+#total {
+    font-family: "NunitoSans-ExtraBold"; 
+}
+
+#trash {
+    background-color: red !important;
+    border-color: red !important;
 }

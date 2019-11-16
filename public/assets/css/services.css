@@ -8,3 +8,16 @@ body {
 .services {
 background-color: white;
 }
+
+#serviceTitle {
+    font-family: "IndieFlower-Regular";
+    font-size: 40px;
+    color: #737063;
+    text-align: center;
+}
+
+#serviceDescription {
+    font-family: "NunitoSans-Regular";
+    color: #737063;
+    font-size: 20px;
+}
