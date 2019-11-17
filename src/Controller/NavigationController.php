@@ -17,7 +17,7 @@ class NavigationController extends AbstractController
      */
     public function home()
     {
-        return $this->render('home/index.html.twig', [
+        return $this->render('home/home.html.twig', [
             'controller_name' => 'NavigationController',
         ]);
     }
@@ -37,17 +37,17 @@ class NavigationController extends AbstractController
      */
     public function infos()
     {
-        return $this->render('about/index.html.twig', [
+        return $this->render('about/about.html.twig', [
             'controller_name' => 'NavigationController',
         ]);
     }
 
     /**
-     * @Route("/news", name="news")
+     * @Route("/blog", name="blog")
      */
-    public function news()
+    public function blog()
     {
-        return $this->render('news/index.html.twig', [
+        return $this->render('blog/blog.html.twig', [
             'controller_name' => 'NavigationController',
         ]);
     }

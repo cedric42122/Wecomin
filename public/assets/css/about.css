@@ -1,0 +1,23 @@
+body {
+    background-image: url("/assets/Pictures/Background/notebookBg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}  
+
+#aboutTitle {
+    font-size: 80px;
+    margin-left: 340px;
+    margin-top: 80px;
+}
+
+#aboutText {
+    font-family: "IndieFlower-Regular", cursive;
+    color: #737063;
+    float: right;
+    width: 500px;
+    font-size: 25px;
+    margin-right: 17%;
+    text-align: center;
+}
