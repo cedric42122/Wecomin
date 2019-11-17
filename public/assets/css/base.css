@@ -4,7 +4,6 @@ html {
 
 body {
   overflow-x: hidden;
-  ;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -36,11 +35,11 @@ footer {
 }
 
 #logo {
-  margin-top: 20px;
+  width: 200px;
 }
 
 .btn {
-  font-family: "Lora-Bold";
+  font-family: "NunitoSans-Regular";
   border-color: #009FE3 !important;
   background-color: #009FE3 !important;
 }

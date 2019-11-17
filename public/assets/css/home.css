@@ -1,23 +1,7 @@
 body {
-    background-image: url("/assets/Pictures/Background/BgJaune.jpg");
+    background-image: url("/assets/Pictures/Background/WecominBg.gif");
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     overflow: hidden;
-}
-
-h1, h2 {
-    color: #FFF8AB;
-    font-size: 150px;
-    text-align: center;
-}
-
-#h2 {
-    margin-right: 300px;
-    margin-top: 150px !important;
-}
-
-h1 {
-    margin-right: 200px;
-}
-  
+}  
