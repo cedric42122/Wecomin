@@ -6,16 +6,32 @@
 {% block body %}
 	<div class="container">
 		<article>
-			<h2>Titre de l'article</h2>
-			<div class="metadata">Ecrit le 10/05/2019 à 19:00 dans la catégorie Politique</div>
+			<h2>{{ article.title}}</h2>
+			<div class="metadata">Ecrit le
+				{{ article.createdAt | date('d/m/Y')}}
+				à
+				{{ article.createdAt | date('H:i')}}
+				dans la catégorie
+				{{ article.category.title }}</div>
 			<div class="content">
-				<img src="http://placehold.it/350x150" alt="">
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates velit quae itaque explicabo soluta deserunt.</p>
-				<p>Ullam quia optio sapiente, nesciunt hic recusandae consectetur dicta magni magnam quod voluptate maiores culpa!</p>
-				<hr>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem voluptatem aut soluta numquam, consequatur qui amet nulla incidunt in necessitatibus? Dignissimos quam dolore magnam eaque aperiam saepe sunt in fugiat ratione provident pariatur impedit laudantium ipsum deleniti necessitatibus perspiciatis reiciendis similique repudiandae quod, consectetur, mollitia id debitis nesciunt tenetur. Sunt.</p>
-				<p>Tempore qui excepturi at voluptatibus ex quos accusamus eligendi asperiores officia nihil saepe quod ipsam iure ipsa dolorum deleniti minus, id, eveniet sapiente. Laborum ex, recusandae reiciendis amet quos dolores distinctio nobis earum id delectus suscipit autem eos harum placeat minima voluptates quam. Delectus voluptatem fuga atque aliquid assumenda accusamus.</p>
+				<img src="{{ article.image }}" alt="image de l'article">
+				{{ article.content | raw }}
 			</div>
 		</article>
+		<section id="commentaires">
+			{% for comment in article.comments %}
+				<div class="comment">
+					<div class="row">
+						<div class="col-3">
+							{{ comment.author }}
+							<small>{{ comment.createdAt | date('d/m/Y à H:i') }}</small>
+						</div>
+						<div class="col-9">
+							{{ comment.content | raw }}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</section>
 	</div>
 {% endblock %}

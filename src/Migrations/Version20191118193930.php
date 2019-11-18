@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190916131103 extends AbstractMigration
+final class Version20191118193930 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,8 @@ final class Version20190916131103 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE news (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, author VARCHAR(255) NOT NULL, article LONGTEXT NOT NULL, category VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, picture VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE ordered RENAME INDEX uniq_f5299398de894f8d TO UNIQ_C3121F99DE894F8D');
+        $this->addSql('ALTER TABLE ordered RENAME INDEX idx_f5299398a76ed395 TO IDX_C3121F99A76ED395');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +31,7 @@ final class Version20190916131103 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE news');
+        $this->addSql('ALTER TABLE ordered RENAME INDEX idx_c3121f99a76ed395 TO IDX_F5299398A76ED395');
+        $this->addSql('ALTER TABLE ordered RENAME INDEX uniq_c3121f99de894f8d TO UNIQ_F5299398DE894F8D');
     }
 }
