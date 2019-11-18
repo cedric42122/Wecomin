@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\News;
+use App\Entity\Blog;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -16,11 +16,11 @@ class NewsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, News::class);
+        parent::__construct($registry, Blog::class);
     }
 
     // /**
-    //  * @return News[] Returns an array of News objects
+    //  * @return Blog[] Returns an array of News objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class NewsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?News
+    public function findOneBySomeField($value): ?Blog
     {
         return $this->createQueryBuilder('n')
             ->andWhere('n.exampleField = :val')
