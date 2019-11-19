@@ -6,9 +6,12 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class BlogController extends Controller
 {
@@ -29,8 +32,14 @@ class BlogController extends Controller
      * @Route("/blog/new", name="blog_create")
      * @Route("/blog/{id}/edit", name="blog_edit")
      */
-    public function form(Article $article = null, Request $request, ObjectManager $manager)
+    public function form(AuthorizationCheckerInterface $authChecker , Article $article = null, Request $request, ObjectManager $manager)
     {
+        // Restriction de l'acces a l'Admin
+        if(!$authChecker->isGranted('ROLE_ADMIN')) 
+        {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$article) {
             $article = new Article();
         }
@@ -40,7 +49,7 @@ class BlogController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$article->getId()) {
-                $article->setCreateAt(new \DateTime());
+                $article->setCreateAt(new \DateTime());J
             }
             $manager->persist($article);
             $manager->flush();

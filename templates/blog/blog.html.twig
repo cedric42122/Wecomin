@@ -3,10 +3,13 @@
 {% block title %}Le blog
 {% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="/assets/css/blog.css">
+{% endblock %}
 
+{% block body %}
 	<div class="container">
-		<h1>Bienvenue dans ce Blog !</h1>
+		<h1 class="my-4">Bienvenue dans ce Blog !</h1>
 		<section class="articles">
 			{% for article in articles %}
 				<article>
@@ -15,12 +18,17 @@
 						{{ article.createdAt | date('d/m/Y')}}
 						à
 						{{ article.createdAt | date('H:i')}}
-						dans la catégorie Politique</div>
+						dans la catégorie
+						{{ article.category.title }}</div>
 					<div class="content">
 						<img src="{{ article.image }}" alt="image de l'article">
 						{{ article.content | raw }}
 						<a href="{{ path('blog_show', {'id': article.id }) }}" class="btn btn-primary">Lire la suite</a>
+						{% if app.user.roles.0 |default(null) %}
+						<a href="{{ path('blog_edit', {'id': article.id }) }}" class="btn btn-danger">Modifier l'article</a>
+						{% endif %}
 					</div>
+					<hr class="my-5">
 				</article>
 			{% endfor %}
 		</section>
