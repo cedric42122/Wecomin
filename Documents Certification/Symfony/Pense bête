@@ -29,6 +29,8 @@
 
 * Différents type dans les formulaires : https://symfony.com/doc/current/reference/forms/types.html
 
+* Mail : lancer maildev dans la console puis aller sur localhost:1080 pour voir les mails recus
+
 
 
 

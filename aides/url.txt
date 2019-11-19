@@ -1,1 +1,0 @@
-https://openclassrooms.com/fr/courses/2078536-developpez-votre-site-web-avec-le-framework-symfony2-ancienne-version/2081287-recuperer-ses-entites-avec-doctrine2

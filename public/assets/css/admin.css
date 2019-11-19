@@ -1,0 +1,13 @@
+body {
+    background-image: url("/assets/Pictures/Background/BgJaune.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+h2 {
+    font-family: "NunitoSans-ExtraBold" !important;
+    color: #736A40 !important;
+    height: 80px;
+}
