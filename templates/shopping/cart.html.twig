@@ -1,68 +1,67 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Panier
-{% endblock %}
+{% block title %}Panier{% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="/assets/css/cart.css">
+<link rel="stylesheet" href="/assets/css/cart.css">
 {% endblock %}
-
 
 {% block body %}
 
+<div class="col-8 text-center">
+	<h1>Votre panier</h1>
+</div>
+{% if items | length > 0 %}
+<div class="">
+	<table class="table col-6 m-5">
+		<thead>
+			<tr>
+				<th>Service</th>
+				<th>Prix</th>
+				<th>Quantité</th>
+				<th>Total</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in items %}
+			<tr>
+				<td>{{ item.service.title }}</td>
+				<td>{{ item.service.price }}</td>
+				<td>{{ item.quantity }}</td>
+				<td>{{ item.service.price * item.quantity }}</td>
+				<td>
+					<a href="{{ path('cart_remove', {'id': item.service.id}) }}" id="trash"
+						class="btn btn-danger btn-sm">
+						<i class="fas fa-trash"></i>
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3" id="total" class="text-right">Total :
+				</td>
+				<td>{{ total }}
+					€</td>
+				<td>
+					<a href="{{ path('payement') }}" class="btn btn-success">Payer</a>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
 	<div class="col-8 text-center p-3">
-		<h1>Votre panier</h1>
+		<a href="{{ path('services') }}" class="btn btn-success">Retour aux prestations
+			<i class="fas fa-undo ml-2"></i>
+		</a>
 	</div>
-
-	{% if items | length > 0 %}
-		<div class="">
-			<table class="table col-6 m-5">
-				<thead>
-					<tr>
-						<th>Service</th>
-						<th>Prix</th>
-						<th>Quantité</th>
-						<th>Total</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in items %}
-						<tr>
-							<td>{{ item.service.title }}</td>
-							<td>{{ item.service.price }}</td>
-							<td>{{ item.quantity }}</td>
-							<td>{{ item.service.price * item.quantity }}</td>
-							<td>
-								<a href="{{ path('cart_remove', {'id': item.service.id}) }}" id="trash" class="btn btn-danger btn-sm">
-									<i class="fas fa-trash"></i>
-								</a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3" id="total" class="text-right">Total :
-						</td>
-						<td>{{ total }}
-							€</td>
-						<td>
-							<a href="{{ path('payement') }}" class="btn btn-success">Payer</a>
-						</td>
-					</tr>
-				</tfoot>
-			</table>
-			<div class="col-8 text-center p-3">
-				<a href="{{ path('services') }}" class="btn btn-success">Retour aux prestations
-					<i class="fas fa-undo ml-2"></i>
-				</a>
-			</div>
-
-		</div>
-	{% else %}
-		<p>Surprise c'est vide !</p>
-	{% endif %}
-
+</div>
+{% else %}
+<div class=" w-100 container">
+	<a href= "{{ path('services') }}"><img class="col-6" src="/assets/Logo/arrow.png" alt="fleche à droite"></a>
+	<p class="col-6" id="emptyCart">Vous n'avez pas sélectionné de produit !!!</p>
+</div>
+{% endif %}
 
 {% endblock %}

@@ -6,11 +6,9 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class BlogController extends Controller
@@ -49,7 +47,7 @@ class BlogController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$article->getId()) {
-                $article->setCreateAt(new \DateTime());J
+                $article->setCreateAt(new \DateTime());
             }
             $manager->persist($article);
             $manager->flush();
