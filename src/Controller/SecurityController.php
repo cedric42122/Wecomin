@@ -74,7 +74,7 @@ class SecurityController extends AbstractController
                 'controller_name' => 'SecurityController',
             ]);
         }
-        return $this->redirectToRoute('exception');
+        return $this->redirectToRoute('home');
     }
 
     /**   

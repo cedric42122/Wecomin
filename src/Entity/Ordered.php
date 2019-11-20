@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ordered
 {
-    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -20,26 +19,38 @@ class Ordered
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $serviceDelivery;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $paymentType;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $amount;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $ammount;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\ServiceDelivery", cascade={"persist", "remove"})
-     */
-    private $serviceDelivery;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
-     */
-    private $user;
+    private $customer;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getServiceDelivery(): ?string
+    {
+        return $this->serviceDelivery;
+    }
+
+    public function setServiceDelivery(string $serviceDelivery): self
+    {
+        $this->serviceDelivery = $serviceDelivery;
+
+        return $this;
     }
 
     public function getPaymentType(): ?string
@@ -47,45 +58,33 @@ class Ordered
         return $this->paymentType;
     }
 
-    public function setPaymentType(string $paymentType): self
+    public function setPaymentType(?string $paymentType): self
     {
         $this->paymentType = $paymentType;
 
         return $this;
     }
 
-    public function getAmmount(): ?int
+    public function getAmount(): ?float
     {
-        return $this->ammount;
+        return $this->amount;
     }
 
-    public function setAmmount(int $ammount): self
+    public function setAmount(float $amount): self
     {
-        $this->ammount = $ammount;
+        $this->amount = $amount;
 
         return $this;
     }
 
-    public function getServiceDelivery(): ?ServiceDelivery
+    public function getCustomer(): ?int
     {
-        return $this->serviceDelivery;
+        return $this->customer;
     }
 
-    public function setServiceDelivery(?ServiceDelivery $serviceDelivery): self
+    public function setCustomer(int $customer): self
     {
-        $this->serviceDelivery = $serviceDelivery;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
+        $this->customer = $customer;
 
         return $this;
     }

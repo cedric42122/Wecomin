@@ -77,14 +77,4 @@ class NavigationController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
-    /**
-     * @Route("/exception", name="exception")
-     */
-    public function errorAccess()
-    {
-        return $this->render('exception/error403.html.twig', [
-            'controller_name' => 'NavigationController',
-        ]);
-    }
 }

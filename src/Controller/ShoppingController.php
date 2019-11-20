@@ -11,7 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class ShoppingController extends AbstractController
 {
@@ -62,6 +63,7 @@ class ShoppingController extends AbstractController
         return $this->render('shopping/cart.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal()
+            
         ]);
     }
 
@@ -86,22 +88,44 @@ class ShoppingController extends AbstractController
     }
 
     /**
-     * @Route("/payment", name="payement")
+     * @Route("/payment", name="payment")
      */
-    public function paymentForm(Ordered $ordered, Request $request)
+    public function paymentForm(AuthorizationCheckerInterface $authChecker, Session $session, CartService $cartService, ObjectManager $manager)
     {
-        $amount = $ordered->getTotalAmount() * 100;
-        \Stripe\Stripe::setApiKey('pk_test_8Lgfp4jEhIIkMPlu2oiM8ToN00zRv85lFd');
+        if ($authChecker->isGranted('ROLE_USER')) {
 
+        //Création de la commande    
+        $ordered = new Ordered();
+
+        $userId = $this->getUser()->getId();
+        $TotalAmount = $cartService->getTotal();
+        $serviceId = $cartService->getIdCart();
+
+        $ordered
+            ->setPaymentType('Bank card')
+            ->setAmount((int) $TotalAmount)
+            ->setServiceDelivery((string)$serviceId)
+            ->setCustomer($userId);
+
+        $manager->persist($ordered);
+        $manager->flush();
+
+        //Paiement avec API Stripe
+        \Stripe\Stripe::setApiKey('sk_test_wNh8jJFHkT5MLbFiFXft1MO000bgSTxzpS');
+        
+        $amount = $TotalAmount * 100;
         $intent = \Stripe\PaymentIntent::create([
-            // 'amount' => $amout,
+            'amount' => $amount,
             'currency' => 'eur',
             'payment_method_types' => ['card'],            
-            'metadata' => ['ordered_id' => $ordered->getId()],
+            'metadata' => ['order_id' => $ordered->getId()],
         ]);
+
         return $this->render('shopping/payment.html.twig', [
-            'ordered' => $ordered,
+            'order' => $ordered,
             'clientPayment' => $intent->client_secret
         ]);
+    }
+        return $this->redirectToRoute("security_registration");
     }
 }

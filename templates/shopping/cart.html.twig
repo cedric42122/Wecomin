@@ -7,12 +7,11 @@
 {% endblock %}
 
 {% block body %}
-
 <div class="col-8 text-center">
 	<h1>Votre panier</h1>
 </div>
 {% if items | length > 0 %}
-<div class="">
+<form action="post">
 	<table class="table col-6 m-5">
 		<thead>
 			<tr>
@@ -46,17 +45,17 @@
 				<td>{{ total }}
 					€</td>
 				<td>
-					<a href="{{ path('payement') }}" class="btn btn-success">Payer</a>
+					<a href="{{ path('payment') }}" type="submit" class="btn btn-success">Payer</a>
 				</td>
 			</tr>
 		</tfoot>
 	</table>
+</form>
 	<div class="col-8 text-center p-3">
 		<a href="{{ path('services') }}" class="btn btn-success">Retour aux prestations
 			<i class="fas fa-undo ml-2"></i>
 		</a>
 	</div>
-</div>
 {% else %}
 <div class=" w-100 container">
 	<a href= "{{ path('services') }}"><img class="col-6" src="/assets/Logo/arrow.png" alt="fleche à droite"></a>

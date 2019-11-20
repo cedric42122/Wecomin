@@ -1,13 +1,11 @@
 <div class="">
-        <h1 class="text-center">Modification de l'utilisateur {{idUser.username}}</h1>
-        <pre>
-            {{ dump(userChangeForm) }}
-        </pre>
+    <h1 class="text-center">Modification de l'utilisateur {{idUser.username}}</h1>
     <form action="/admin/actionUserChange" class="border" method="POST">
         {{ form_start(userChangeForm) }}
         <input type="hidden" name="id" value="{{idUser.id}}">
         <!-- Modal -->
-        <div class="modal fade" id="modalUserChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalUserChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -32,6 +30,6 @@
         </button>
     </form>
 </div>
-        {# {{ form_label(userChangeForm.username, 'NOM') }}
+{# {{ form_label(userChangeForm.username, 'NOM') }}
         {{ form_label(userChangeForm.email ) }}
         {{ form_label(userChangeForm.roles ) }} #}

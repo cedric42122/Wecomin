@@ -41,8 +41,6 @@ public function __construct(SessionInterface $session, ServiceDeliveryRepository
         }
 
         $this->session->set('cart', $cart);
-
-
     } 
 
     public function getFullCart() : array
@@ -72,5 +70,13 @@ public function __construct(SessionInterface $session, ServiceDeliveryRepository
 
     } 
 
+    public function getIdCart() : int
+    {
+        foreach($this->getFullCart() as $item) 
+        {
+            $idCart = $item['service']->getId();
+        }
+        return $idCart;
+    }
 
 }
