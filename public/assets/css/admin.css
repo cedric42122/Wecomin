@@ -11,3 +11,19 @@ h2 {
     color: #736A40 !important;
     height: 4.2vw;
 }
+
+.custom_file input {
+    margin-top: 2vw;
+}
+
+#ModifServiceTitle {
+    font-size: 3vw !important;
+}
+
+#formServiceChange form {
+    border: none !important;
+}
+
+#formUserChange form {
+    border: none !important;
+}
