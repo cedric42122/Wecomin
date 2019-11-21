@@ -8,17 +8,17 @@ body {
 }
 
 #letterIcon {
-    width: 80px;
+    width: 4vw;
 }
 
 #formContact label {
     color: #737063;
-    font-size: 30px;
+    font-size: 2vw;
 }
 
 #map {
-    width: 625px;
-    height: 550px;
+    width: 33vw;
+    height: 29vw;
     border-radius: .25rem;
 }
 
@@ -29,13 +29,13 @@ body {
 
 .followUs {
     font-family: "IndieFlower-Regular";
-    font-size: 40px;
+    font-size: 2vw;
     color: #FFF8AB;
 }
 
 #legalNotice {
     margin-left: 30%;
-    font-size: 20px;
+    font-size: 1vw;
     color: #FFF8AB;
 }
 

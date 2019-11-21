@@ -14,14 +14,14 @@ footer {
   font-family: "NunitoSans-Regular" !important;
 }
 
-.navbar {
+.navbar  {
   font-family: "NunitoSans-Regular" !important;
   background-color: #736A40 !important;
-  height: 80px;
+  height: 4vw;
 }
 
 .nav-link {
-  font-size: 25px;
+  font-size: 1.3vw;
   color: #FFF8AB !important;
 }
 
@@ -31,11 +31,11 @@ footer {
 }
 
 .connection {
-  margin-left: 150px;
+  margin-left: 8vw;
 }
 
 #logo {
-  width: 200px;
+  width: 10.4vw;
 }
 
 .btn {
@@ -52,7 +52,7 @@ h1 {
   font-family: "IndieFlower-Regular", cursive;  
   text-shadow: 2px 2px 2px white;
   color: #009FE3;
-  font-size: 100px;
+  font-size: 5.2vw;
 }
 
 .modal-header {
@@ -66,7 +66,7 @@ h1 {
 .modal-header h5 {
   font-family: "IndieFlower-Regular", cursive;
   color: #009FE3 !important;
-  font-size: 60px !important;
+  font-size: 3.1vw !important;
   text-shadow: 2px 2px 2px white;
 }
 
@@ -86,8 +86,4 @@ h1 {
 
 .form-group ::placeholder {
   color: #736A40 !important;
-}
-
-.modal-body {
-  /* background-color: seashell; */
 }

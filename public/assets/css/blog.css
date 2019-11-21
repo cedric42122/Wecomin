@@ -8,10 +8,10 @@ body {
 
 .articles {
     background-color: white;
-    padding: 20px;
+    padding: 1vw;
     font-family: "NunitoSans-Regular";
     color: #737063;
-    margin-top: 50px;
+    margin-top: 3vw;
 }
 
 .articles h2 {
@@ -19,12 +19,12 @@ body {
 }
 
 .articles img {
-    margin-bottom: 20px;
+    margin-bottom: 1vw;
 }
 
 #comments {
     background-color: white;
-    padding: 20px;
+    padding: 1vw;
     font-family: "NunitoSans-Regular";
     color: #737063;
 }

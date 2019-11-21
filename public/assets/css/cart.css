@@ -13,13 +13,13 @@ body {
 .table th {
     font-family: "NunitoSans-ExtraBold";
     color: #737063;
-    font-size: 30px;
+    font-size: 1.6vw;
 }
 
 .table td {
     font-family: "NunitoSans-Regular";
     color: #737063;
-    font-size: 20px;
+    font-size: 1vw;
 }
 
 #total {
@@ -34,6 +34,6 @@ body {
 #emptyCart {
     font-family: "NunitoSans-ExtraBold";
     color: #737063;
-    font-size: 60px;
+    font-size: 3.1vw;
     text-align: center;
 }

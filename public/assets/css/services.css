@@ -11,7 +11,7 @@ background-color: white;
 
 #serviceTitle {
     font-family: "IndieFlower-Regular";
-    font-size: 40px;
+    font-size: 2.1vw;
     color: #737063;
     text-align: center;
 }
@@ -19,5 +19,5 @@ background-color: white;
 #serviceDescription {
     font-family: "NunitoSans-Regular";
     color: #737063;
-    font-size: 20px;
+    font-size: 1vw;
 }
