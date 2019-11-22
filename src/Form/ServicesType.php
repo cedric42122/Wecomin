@@ -18,7 +18,13 @@ class ServicesType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('picture', FileType::class)
+            ->add('picture', FileType::class, array(
+                'data_class' => null,
+                'attr' =>
+                [
+                    'placeholder' => 'Choose a file',
+                ]
+            ))
             ->add('price', MoneyType::class)
             ->add('promotion');
     }
@@ -26,6 +32,7 @@ class ServicesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            
             'data_class' => ServiceDelivery::class,
         ]);
     }

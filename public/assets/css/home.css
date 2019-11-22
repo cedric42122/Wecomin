@@ -1,24 +1,18 @@
-body {
+/* body {
     overflow: hidden;
-}
-
-/* #gifWecomin {
     background-image: url("/assets/Pictures/Background/Gif_Wecomin.gif");
     background-size: cover;
+    background-position: center center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    overflow: hidden;
-    height: 59vw;
-    width: 104vw;
+} */
 
-}   */
-
-/* #gifWecomin {
+body {
+    /* L'image est positionnée en fond et est centrée */
     background: url("/assets/Pictures/Background/Gif_Wecomin.gif") no-repeat center center fixed;
+    /* Ajout de la propriété avec les préfixes pour tous les moteurs de rendu */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    margin: 0;
-    padding: 0;
-} */
+    }

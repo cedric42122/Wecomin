@@ -1,10 +1,6 @@
-html {
-  height: 100%;
-}
 
 body {
   overflow-x: hidden;
-  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -17,7 +13,7 @@ footer {
 .navbar  {
   font-family: "NunitoSans-Regular" !important;
   background-color: #736A40 !important;
-  height: 4vw;
+  /* max-height: 4vw; */
 }
 
 .nav-link {

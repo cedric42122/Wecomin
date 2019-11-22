@@ -3,16 +3,19 @@
 {% block title %}Gestion des services{% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="/assets/css/admin.css">
+
 {% endblock %}
 
 
 {% block body %}
 <div class="container">
-        <h1 class= "my-5">Ajouter une prestation</h1>
-        <div class= "addService">
+    <h1 class="my-5">Ajouter une prestation</h1>
+    <div class="addService">
         {{ form_start(createServiceForm) }}
         {{ form_widget(createServiceForm.title, {'attr': {'placeholder': "Nom de la prestation"}}) }}
-        {{ form_widget(createServiceForm.picture, {'attr': {'placeholder': "Image de la prestation"}}) }}
+        <div class="form-control-file">
+            {{ form_widget(createServiceForm.picture, {'attr': {'placeholder': "Image de la prestation"}}) }}
+        </div>
         {{ form_widget(createServiceForm.description, {'attr': {'placeholder': "Description de la prestation"}}) }}
         {{ form_widget(createServiceForm.price, {'attr': {'placeholder': "Prix de la prestation"}}) }}
         <button type="submit" class="btn btn-success">Ajouter</button>

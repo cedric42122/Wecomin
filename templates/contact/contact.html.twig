@@ -16,7 +16,7 @@
 				</small>
 			</div>
 			<div class="mt-5 col-6">
-				<h1>Nous contacter ...<img class="ml-5" id="letterIcon" src="/assets/Pictures/letter.png" alt="courrier"></h1>
+				<h1>Nous contacter ...<img class="ml-5 img-fluid" id="letterIcon" src="/assets/Pictures/letter.png" alt="courrier"></h1>
 				<div class="mt-3" id="formContact">
 					{{ form_start(form)}}
 					<div class="row">
@@ -47,9 +47,13 @@
 	<footer class="fixed-bottom page-footer font-small pt-3">
 		<div class="row d-flex align-items-center">
 			<span class="followUs mx-5">Et suivez-nous sur</span>
-			<a href="https://www.facebook.com/Wecomin-1949256065127675" target="_blanck"><img src="/assets/social_icon/facebook_icon_64px.png" alt="lien facebook"></a>
+			<a href="https://www.facebook.com/Wecomin-1949256065127675" target="_blanck">
+				<img class= "img-fluid" src="/assets/social_icon/facebook_icon_64px.png" alt="lien facebook">
+			</a>
 			<span class="followUs mx-5">ou encore</span>
-			<a href="https://www.linkedin.com/company/wecomin" target="_blanck"><img src="/assets/social_icon/linkedin_icon_64px.png" alt="lien linkedin"></a>
+			<a href="https://www.linkedin.com/company/wecomin" target="_blanck">
+				<img class= "img-fluid" src="/assets/social_icon/linkedin_icon_64px.png" alt="lien linkedin">
+			</a>
 			<a id="legalNotice" href="{{ path('legalNotice') }}">Mentions Légales</a>
 		</div>
 		<div class="footer-copyright text-center py-3">© 2019 Copyright: WECOMIN

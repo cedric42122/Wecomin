@@ -1,24 +1,33 @@
 body {
-    background-image: url("/assets/Pictures/Background/notebookBg.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    /* background-repeat: no-repeat; */
     overflow: hidden;
 }  
 
+#aboutBg {
+    position: relative;
+}
+
 h1 {
-    font-size: 4vw; 
-    margin-left: 19vw; 
-    margin-top: 4vw; 
+    position: absolute;
+    z-index: 1;
+    font-size: 4.5vw; 
+    left: 18vw; 
+    top: 12vw; 
+}
+
+#AboutImage {
+    position: absolute;
+    z-index: 1;
 }
 
 #aboutText {
+    position: absolute;
+    z-index: 2;
     font-family: "IndieFlower-Regular", cursive;
     color: #737063;
     float: right;
     width: 26vw; 
-    font-size: 1.3vw; 
-    margin-right: 17vw;
+    font-size: 1.2vw;
+    top: 17vw; 
+    right: 18vw;
     text-align: center;
 }

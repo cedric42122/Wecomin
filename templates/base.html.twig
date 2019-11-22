@@ -1,94 +1,109 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>
-			{% block title %}Wecomin
-			{% endblock %}
-		</title>
-		<link rel="shortcut icon" href="/assets/Logo/Favicon.jpg" type="image/x-icon">
-		<link rel="stylesheet" href="/assets/fontawesome-free-5.11.2-web/css/all.css">
-		<link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap-grid.min.css">
-		<link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap-reboot.min.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
-		<link rel="stylesheet" href="/assets/fonts/fonts.css">
-		<link rel="stylesheet" href="/assets/css/base.css"> 
-        {% block stylesheets %}{% endblock %}
-		</head>
-		<body>
-			<nav class="navbar navbar-expand-lg navbar-light">
-				<a class="navbar-brand">
-					<img class="img-fluid" id="logo" src="/assets/Logo/Logo_Wecomin.png" alt="Logo">
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
 
-				<div class="collapse navbar-collapse ml-5" id="navbarColor03">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item ">
-							<a class="nav-link" href="{{ path('home') }}">Accueil
-								<span class="sr-only">(current)</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('about') }}">A propos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('blog') }}">Blog</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('services') }}">Prestations</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('contact') }}">Contact</a>
-						</li>
-						{% if not app.user %}
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link connection" data-toggle="modal" data-target="#modalConnexion" href="{{ path('security_login') }}">Connexion</a>
-								{# MODAL CONNEXION #}
-								<div class="modal fade" id="modalConnexion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog modal-dialog-centered" role="document">
-										<div class="modal-content">
-											{{ render(controller('App\\Controller\\SecurityController::login'))}}
-										</div>
-									</div>
-								</div>
-								{# FIN MODAL CONNEXION #}
-							</li>
-						{% else %}
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
-							</li>
-						{% endif %}
-						{% if app.user.roles.0 |default(null) %}
-							<li class="nav-item">
-								<a class="nav-link" a href="{{ path('admin') }}">Administrateur</a>
-							</li>
-						{% endif %}
-					</ul>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>
+		{% block title %}Wecomin
+		{% endblock %}
+	</title>
+	<link rel="shortcut icon" href="/assets/Logo/Favicon.jpg" type="image/x-icon">
+	<link rel="stylesheet" href="/assets/fontawesome-free-5.11.2-web/css/all.css">
+	<link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="/assets/bootstrap-4.3.1/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+	<link rel="stylesheet" href="/assets/fonts/fonts.css">
+	<link rel="stylesheet" href="/assets/css/base.css">
+	{% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<a class="navbar-brand">
+			<img class="" id="logo" src="/assets/Logo/Logo_Wecomin.png" alt="Logo">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+			aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse ml-5" id="navbarColor03">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item ">
+					<a class="nav-link" href="{{ path('home') }}">Accueil
+						<span class="sr-only">(current)</span>
+					</a>
 				</li>
-			</div>
-		</body>
-	</html>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('about') }}">A propos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('blog') }}">Blog</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('services') }}">Prestations</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('contact') }}">Contact</a>
+				</li>
+				{% if not app.user %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link connection" data-toggle="modal" data-target="#modalConnexion"
+						href="{{ path('security_login') }}">Connexion</a>
+					{# MODAL CONNEXION #}
+					<div class="modal fade" id="modalConnexion" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								{{ render(controller('App\\Controller\\SecurityController::login'))}}
+							</div>
+						</div>
+					</div>
+					{# FIN MODAL CONNEXION #}
+				</li>
+
+				{% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
+				</li>
+				{% endif %}
+				{% if app.user %}
+				{% if app.user.roles.0 == "ROLE_ADMIN" |default(null) %}
+				<li class="nav-item">
+					<a class="nav-link" a href="{{ path('admin') }}">Administrateur</a>
+				</li>
+				{% endif %}
+				{% endif %}
+			</ul>
+			</li>
+		</div>
+</body>
+
+</html>
 </nav>
 {% for message in app.flashes('success') %}
-	<div class="alert alert-success">
-		{{ message }}
-	</div>
+<div class="alert alert-success">
+	{{ message }}
+</div>
 {% endfor %}
 
 {% block body %}{% endblock %}
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
 <script src="/assets/fontawesome-free-5.11.2-web/js/all.js"></script>
 <script src="/assets/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
 <script src="/assets/js/main.js"></script>
-{% block javascripts %}{% endblock %}</body></html>
+{% block javascripts %}{% endblock %}</body>
+
+</html>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Traits\UploadableFile;
 use App\Entity\Ordered;
 use App\Entity\ServiceDelivery;
 use App\Form\ServicesType;
@@ -16,42 +17,41 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class ShoppingController extends AbstractController
 {
+    use UploadableFile;
+
     /**
      * @Route("/serviceForm", name="serviceForm")
      */
-    public function serviceForm(Request $request, ObjectManager $manager)
+    public function serviceForm(AuthorizationCheckerInterface $authChecker, Request $request, ObjectManager $manager)
     {
-        $service = new ServiceDelivery();
+        if ($authChecker->isGranted('ROLE_USER')) {
 
-        $form = $this->createForm(ServicesType::class, $service);
+            $service = new ServiceDelivery();
 
-        $form->handleRequest($request);
+            $form = $this->createForm(ServicesType::class, $service);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $imgFile */
-            $imgFile = $form["picture"]->getData();
+            $form->handleRequest($request);
 
-            if ($imgFile) {
-                $imgFileName =
-                    pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME)
-                    . '-' . uniqid()
-                    . '.' . $imgFile->guessClientExtension();
+            if ($form->isSubmitted() && $form->isValid()) {
 
-                $imgFile->move(dirname(__FILE__) . "/../../public/uploads/", $imgFileName);
+                if ($form["picture"]) {
+                    $imgFileName = $this->uploadPicture($form["picture"]->getData());
+                    $service->setPicture("/uploads/" . $imgFileName);
+                }
 
-                $service->setPicture("/uploads/" . $imgFileName);
+                $manager->persist($service);
+                $manager->flush();
+
+                return $this->redirectToRoute('serviceForm');
             }
 
-            $manager->persist($service);
-            $manager->flush();
-
-            return $this->redirectToRoute('serviceForm');
+            return $this->render('shopping/serviceForm.html.twig', [
+                'controller_name' => 'ShoppingController',
+                'createServiceForm' => $form->createView()
+            ]);
         }
 
-        return $this->render('shopping/serviceForm.html.twig', [
-            'controller_name' => 'ShoppingController',
-            'createServiceForm' => $form->createView()
-        ]);
+        return $this->redirectToRoute("security_registration");
     }
 
     /**
@@ -63,7 +63,7 @@ class ShoppingController extends AbstractController
         return $this->render('shopping/cart.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal()
-            
+
         ]);
     }
 
@@ -94,38 +94,38 @@ class ShoppingController extends AbstractController
     {
         if ($authChecker->isGranted('ROLE_USER')) {
 
-        //Création de la commande    
-        $ordered = new Ordered();
+            //Création de la commande    
+            $ordered = new Ordered();
 
-        $userId = $this->getUser()->getId();
-        $TotalAmount = $cartService->getTotal();
-        $serviceId = $cartService->getIdCart();
+            $userId = $this->getUser()->getId();
+            $TotalAmount = $cartService->getTotal();
+            $serviceId = $cartService->getIdCart();
 
-        $ordered
-            ->setPaymentType('Bank card')
-            ->setAmount((int) $TotalAmount)
-            ->setServiceDelivery((string)$serviceId)
-            ->setCustomer($userId);
+            $ordered
+                ->setPaymentType('Bank card')
+                ->setAmount((int) $TotalAmount)
+                ->setServiceDelivery((string) $serviceId)
+                ->setCustomer($userId);
 
-        $manager->persist($ordered);
-        $manager->flush();
+            $manager->persist($ordered);
+            $manager->flush();
 
-        //Paiement avec API Stripe
-        \Stripe\Stripe::setApiKey('sk_test_wNh8jJFHkT5MLbFiFXft1MO000bgSTxzpS');
-        
-        $amount = $TotalAmount * 100;
-        $intent = \Stripe\PaymentIntent::create([
-            'amount' => $amount,
-            'currency' => 'eur',
-            'payment_method_types' => ['card'],            
-            'metadata' => ['order_id' => $ordered->getId()],
-        ]);
+            //Paiement avec API Stripe
+            \Stripe\Stripe::setApiKey('sk_test_wNh8jJFHkT5MLbFiFXft1MO000bgSTxzpS');
 
-        return $this->render('shopping/payment.html.twig', [
-            'order' => $ordered,
-            'clientPayment' => $intent->client_secret
-        ]);
-    }
+            $amount = $TotalAmount * 100;
+            $intent = \Stripe\PaymentIntent::create([
+                'amount' => $amount,
+                'currency' => 'eur',
+                'payment_method_types' => ['card'],
+                'metadata' => ['order_id' => $ordered->getId()],
+            ]);
+
+            return $this->render('shopping/payment.html.twig', [
+                'order' => $ordered,
+                'clientPayment' => $intent->client_secret
+            ]);
+        }
         return $this->redirectToRoute("security_registration");
     }
 }

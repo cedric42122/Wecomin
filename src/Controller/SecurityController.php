@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Controller\Traits\UploadableFile;
 use App\Entity\ServiceDelivery;
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Form\ServicesType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +21,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
+    use UploadableFile;
+
     /**
      * @Route("/inscription", name="security_registration")
      */
@@ -123,34 +129,25 @@ class SecurityController extends AbstractController
     public function actionServiceChange(Request $request, ObjectManager $manager)
     {
         $id = $request->request->get('id');
-
-        // Récupération des données du formulaire
-        $form = $request->request->get('form');
-
-        $title = $form['title'];
-        $description = $form['description'];
-        $picture = $form['picture'];
-        $price = $form['price'];
-
-        //Evite l'erreur avec la checkbox si promotion est vide
-        // $promotion = $form['promotion'] ?? '';
-        if(isset($form['promotion'])) {
-            $promotion = $form['promotion'];
-        }
-        else {
-            $promotion = '';
-        }
-
         // Récupération de l'objet Service en base
-        $serviceBdd = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
+        $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
 
-        // Affection du champ souhaité au service concerné
-        $serviceBdd->setTitle($title)->setDescription($description)->setPicture($picture)->setPrice($price)->setPromotion($promotion);
+        $form = $this->createForm(ServicesType::class, new ServiceDelivery);
+        $form->handleRequest($request);
 
-        $manager->persist($serviceBdd);
-        $manager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form["picture"]) {
+                $imgFileName = $this->uploadPicture($form['picture']->getData());
+                $service->setPicture("/uploads/" . $imgFileName);
+            }
 
-        return $this->redirectToRoute('serviceChange');
+            $manager->persist($service);
+            $manager->flush();
+
+            return $this->redirectToRoute('serviceChange');
+        }
+
+        // Gestion de l'erreur d'update de service
     }
 
     /**
@@ -169,7 +166,13 @@ class SecurityController extends AbstractController
                 'label' => 'Nom d\'utilisateur'
             ])
             ->add('email')
-            ->add('roles')
+            ->add('roles', ChoiceType::class, [
+                'multiple' => true,
+                'choices'  => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Admin' => 'ROLE_ADMIN',
+                ]
+            ])
             ->getForm();
 
         return $this->render('admin/formUserChange.html.twig', [
@@ -184,7 +187,7 @@ class SecurityController extends AbstractController
     public function serviceChange()
     {
         // Récupération de tous les services en BDD
-        $services = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findAll();;
+        $services = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findAll();
 
         return $this->render('admin/serviceChange.html.twig', [
             'controller_name' => 'SecurityController',
@@ -203,20 +206,11 @@ class SecurityController extends AbstractController
         $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
 
         // Formulaire modification service
-        $form = $this->createFormBuilder($service)
+        $form = $this->createForm(ServicesType::class, $service);
 
-            ->add('title')
-            ->add('description')
-            ->add('picture')
-            ->add('price', )
-            ->add('promotion',CheckboxType::class, [
-                'required' => false
-            ])
-            ->getForm();
-            
         return $this->render('admin/formServiceChange.html.twig', [
             'serviceChangeForm' => $form->createView(),
-            'idService' => $service,
+            'service' => $service,
         ]);
     }
 }

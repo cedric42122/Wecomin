@@ -21,11 +21,14 @@
 						dans la catégorie
 						{{ article.category.title }}</div>
 					<div class="content">
-						<img src="{{ article.image }}" alt="image de l'article">
+						<img class= "img-fluid" src="{{ article.image }}" alt="image de l'article">
 						{{ article.content | raw }}
 						<a href="{{ path('blog_show', {'id': article.id }) }}" class="btn btn-primary">Lire la suite</a>
-						{% if app.user.roles.0 |default(null) %}
-						<a href="{{ path('blog_edit', {'id': article.id }) }}" class="btn btn-danger">Modifier l'article</a>
+						{% if app.user %}					
+							{% if app.user.roles.0 == "ROLE_ADMIN" |default(null) %}
+								<a href="{{ path('blog_edit', {'id': article.id }) }}" class="btn btn-danger ml-5">Modifier l'article</a>
+								<a href="{{ path('blog_create') }}" class="btn btn-danger">Ajouter un article</a>
+							{% endif %}
 						{% endif %}
 					</div>
 					<hr class="my-5">
