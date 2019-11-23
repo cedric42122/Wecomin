@@ -80,7 +80,6 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}/delete", name="blog_delete")
      */
-
      public function delete(AuthorizationCheckerInterface $authChecker ,Article $article, ObjectManager $manager)
      {
         if(!$authChecker->isGranted('ROLE_ADMIN')) 

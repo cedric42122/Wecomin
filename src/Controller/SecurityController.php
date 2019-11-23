@@ -127,6 +127,7 @@ class SecurityController extends AbstractController
     public function actionServiceChange(Request $request, ObjectManager $manager)
     {
         $id = $request->request->get('id');
+
         // Récupération de l'objet Service en base
         $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
 
@@ -138,7 +139,6 @@ class SecurityController extends AbstractController
                 $imgFileName = $this->uploadPicture($form['picture']->getData());
                 $service->setPicture("/uploads/" . $imgFileName);
             }
-
             $manager->persist($service);
             $manager->flush();
 
@@ -146,7 +146,7 @@ class SecurityController extends AbstractController
         }
 
         // Gestion de l'erreur d'update de service
-    }
+    }    
 
     /**
      * @Route("/admin/ajaxUserSelect", name="ajaxUserSelect")
@@ -180,20 +180,6 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/admin/serviceChange", name="serviceChange")
-     */
-    public function serviceChange()
-    {
-        // Récupération de tous les services en BDD
-        $services = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findAll();
-
-        return $this->render('admin/serviceChange.html.twig', [
-            'controller_name' => 'SecurityController',
-            'services' => $services,
-        ]);
-    }
-
-    /**
      * @Route("/admin/ajaxServiceSelect", name="ajaxServiceSelect")
      */
     public function ajaxServiceSelectedAction(Request $request)
@@ -211,4 +197,29 @@ class SecurityController extends AbstractController
             'service' => $service,
         ]);
     }
-}
+    
+   /**
+     * @Route("/admin/serviceChange", name="serviceChange")
+     */
+    public function serviceChange()
+    {
+        // Récupération de tous les services en BDD
+        $services = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findAll();
+
+        return $this->render('admin/serviceChange.html.twig', [
+            'controller_name' => 'SecurityController',
+            'services' => $services,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/serviceDelete{id}", name="serviceDelete")
+     */
+     public function serviceDelete(ServiceDelivery $service, ObjectManager $manager)
+     {
+        $manager->remove($service);
+        $manager->flush();
+
+        return $this->redirectToRoute('admin');
+     }
+} 
