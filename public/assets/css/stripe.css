@@ -1,18 +1,25 @@
-/**
- * The CSS shown here will not be introduced in the Quickstart guide, but shows
- * how you can use CSS to style your Element's container.
- */
+body {
+  background-image: url("/assets/Pictures/Background/BgJaune.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  position: center center;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+#labelPayment {
+  color: #736A40 !important;
+  font-family: "NunitoSans-Regular" !important;
+  font-size: 1vw;
+}
+
  .StripeElement {
     box-sizing: border-box;
-  
     height: 2.1vw;
-  
     padding: 10px 12px;
-  
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: white;
-  
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;

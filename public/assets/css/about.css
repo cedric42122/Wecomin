@@ -1,6 +1,6 @@
 body {
     overflow: hidden;
-}  
+}
 
 #aboutBg {
     position: relative;
@@ -9,9 +9,9 @@ body {
 h1 {
     position: absolute;
     z-index: 1;
-    font-size: 4.5vw; 
-    left: 18vw; 
-    top: 12vw; 
+    font-size: 4.5vw;
+    left: 18vw;
+    top: 12vw;
 }
 
 #AboutImage {
@@ -25,9 +25,21 @@ h1 {
     font-family: "IndieFlower-Regular", cursive;
     color: #737063;
     float: right;
-    width: 26vw; 
+    width: 28vw;
     font-size: 1.2vw;
-    top: 17vw; 
-    right: 18vw;
+    top: 20vw;
+    right: 14vw;
     text-align: center;
+}
+
+@media (max-width: 990px) {
+    h1 {
+        top: 13vh;
+    }
+
+    #aboutText {
+        width: 30vw;
+        top: 19vh;
+        font-size: 1vw;
+    }
 }

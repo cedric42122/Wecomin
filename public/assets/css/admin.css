@@ -12,6 +12,12 @@ h2 {
     height: 4.2vw;
 }
 
+.modifLabel {
+    font-family: "NunitoSans-ExtraBold" !important;
+    color: #736A40 !important;
+    height: 2vw;
+}
+
 .custom_file input {
     margin-top: 2vw;
 }
@@ -26,4 +32,16 @@ h2 {
 
 #formUserChange form {
     border: none !important;
+}
+
+.addService form input {
+    margin-bottom: 1vw;
+}
+
+.custom-file {
+    margin-bottom: 1vw;
+}
+
+#services_description {
+    margin-bottom: 1vw;
 }

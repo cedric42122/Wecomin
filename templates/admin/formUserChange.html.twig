@@ -1,5 +1,4 @@
-<div class="">
-    <h1 class="text-center">Modification de l'utilisateur {{idUser.username}}</h1>
+    <h1 class="text-center mb-3">Modification de l'utilisateur "{{idUser.username}}"</h1>
     <form action="/admin/actionUserChange" class="border" method="POST">
         {{ form_start(userChangeForm) }}
         <input type="hidden" name="id" value="{{idUser.id}}">
@@ -25,8 +24,7 @@
             </div>
         </div>
         {{ form_end(userChangeForm) }}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUserChange">
+        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#modalUserChange">
             MODIFIER
         </button>
     </form>
-</div>

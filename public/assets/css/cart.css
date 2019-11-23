@@ -2,6 +2,7 @@ body {
     background-image: url("/assets/Pictures/Background/cartBg.jpg");
     background-size: cover;
     background-attachment: fixed;
+    position: center center;
     background-repeat: no-repeat;
     background-position: top;
 }
@@ -36,4 +37,10 @@ body {
     color: #737063;
     font-size: 3.1vw;
     text-align: center;
+}
+
+@media (max-width: 1400px) {
+    body {
+        background-image: url("/assets/Pictures/Background/BgJaune.jpg");
+    }
 }

@@ -9,9 +9,7 @@ use App\Form\RegistrationType;
 use App\Form\ServicesType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -76,7 +74,7 @@ class SecurityController extends AbstractController
     public function admin(AuthorizationCheckerInterface $authChecker)
     {
         if ($authChecker->isGranted('ROLE_ADMIN')) {
-            return $this->render('admin/index.html.twig', [
+            return $this->render('admin/admin.html.twig', [
                 'controller_name' => 'SecurityController',
             ]);
         }

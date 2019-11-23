@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Gestion des services{% endblock %}
-{% block stylesheets %}
-<link rel="stylesheet" href="/assets/css/admin.css">
 
-{% endblock %}
-
+{% block stylesheets %}<link rel="stylesheet" href="/assets/css/admin.css">{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -13,12 +10,12 @@
     <div class="addService">
         {{ form_start(createServiceForm) }}
         {{ form_widget(createServiceForm.title, {'attr': {'placeholder': "Nom de la prestation"}}) }}
-        <div class="form-control-file">
-            {{ form_widget(createServiceForm.picture, {'attr': {'placeholder': "Image de la prestation"}}) }}
-        </div>
+            <div class="form-control-file">
+                {{ form_widget(createServiceForm.picture, {'attr': {'placeholder': "Image de la prestation"}}) }}
+            </div>
         {{ form_widget(createServiceForm.description, {'attr': {'placeholder': "Description de la prestation"}}) }}
         {{ form_widget(createServiceForm.price, {'attr': {'placeholder': "Prix de la prestation"}}) }}
-        <button type="submit" class="btn btn-success">Ajouter</button>
+            <button type="submit" class="btn btn-success mt-5 mb-3">Ajouter</button>
         {{ form_end(createServiceForm) }}
     </div>
 </div>
