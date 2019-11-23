@@ -1,27 +1,30 @@
-<form action="/admin/actionServiceChange" class="border" method="POST">
-  <h1 id="ModifServiceTitle" class="text-center my-5">Modification de la prestation "{{ service.title }}"</h1>
-  {{ form_start(serviceChangeForm) }}
-  {{ form_row(serviceChangeForm.title, {'label': 'Titre de la prestation'}) }}
-  {{ form_row(serviceChangeForm.description) }}
-  {% if service.picture %}
-    <img class= "img-fluid my-3" src="{{service.picture}}" alt="Image de la prestation choisie" 
-  {% endif %} 
-  <div class="form-control-file">
-  {{ form_widget(serviceChangeForm.picture, {'attr': {'placeholder': "Image de la prestation"}}) }}
-  </div>
-  {{ form_row(serviceChangeForm.price, {'label': 'Prix'} ) }}
-  {{ form_row(serviceChangeForm.promotion ) }}
+  <form action="/admin/actionServiceChange" class="border" method="POST" enctype="multipart/form-data">
+    <h1 id="ModifServiceTitle" class="text-center my-5">Modification de la prestation "{{ service.title }}"</h1>
 
-  <input type="hidden" name="id" value="{{service.id}}">
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalServiceChange">
-    MODIFIER
-  </button>
-  <a href="{{ path('serviceDelete', {'id': service.id }) }}" class="btn btn-danger">SUPPRIMER</a>
-  
-  <!-- Modal -->
-    <div class="modal fade" id="modalServiceChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    {{ form_row(serviceChangeForm.title, {'label': 'Titre de la prestation'}) }}
+    {{ form_row(serviceChangeForm.description) }}
+
+    {% if service.picture %}
+      <img class="img-fluid my-3" src="{{service.picture}}" alt="Image de la prestation choisie">
+    {% endif %}
+
+    <div class="form-control-file">
+      {{ form_widget(serviceChangeForm.picture, {'attr': {'placeholder': "Image de la prestation"}}) }}
+    </div>
+    
+    {{ form_row(serviceChangeForm.price, {'label': 'Prix'} ) }}
+    {{ form_row(serviceChangeForm.promotion ) }}
+
+    <input type="hidden" name="id" value="{{service.id}}">
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalServiceChange">
+      MODIFIER
+    </button>
+
+    <a href="{{ path('serviceDelete', {'id': service.id }) }}" class="btn btn-danger">SUPPRIMER</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalServiceChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -40,5 +43,5 @@
         </div>
       </div>
     </div>
-  {{ form_end(serviceChangeForm) }}
-</form>
+    {{ form_end(serviceChangeForm) }}
+  </form>

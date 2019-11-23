@@ -131,7 +131,7 @@ class SecurityController extends AbstractController
         // Récupération de l'objet Service en base
         $service = $this->getDoctrine()->getRepository(ServiceDelivery::class)->findOneById($id);
 
-        $form = $this->createForm(ServicesType::class, new ServiceDelivery);
+        $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -146,6 +146,7 @@ class SecurityController extends AbstractController
         }
 
         // Gestion de l'erreur d'update de service
+        dd($form->getErrors()->__toString());
     }    
 
     /**

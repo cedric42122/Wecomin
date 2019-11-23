@@ -11,7 +11,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -59,11 +58,9 @@ class ShoppingController extends AbstractController
      */
     public function cartIndex(CartService $cartService)
     {
-
         return $this->render('shopping/cart.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal()
-
         ]);
     }
 
