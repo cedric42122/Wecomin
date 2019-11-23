@@ -168,7 +168,7 @@ class SecurityController extends AbstractController
                 'multiple' => true,
                 'choices'  => [
                     'Utilisateur' => 'ROLE_USER',
-                    'Admin' => 'ROLE_ADMIN',
+                    'Administrateur' => 'ROLE_ADMIN',
                 ]
             ])
             ->getForm();

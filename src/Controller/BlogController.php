@@ -69,10 +69,29 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}", name="blog_show")
      */
+
     public function show(Article $article)
     {
         return $this->render('blog/show.html.twig', [
             'article' => $article
         ]);
     }
+
+    /**
+     * @Route("/blog/{id}/delete", name="blog_delete")
+     */
+
+     public function delete(AuthorizationCheckerInterface $authChecker ,Article $article, ObjectManager $manager)
+     {
+        if(!$authChecker->isGranted('ROLE_ADMIN')) 
+        {
+            return $this->redirectToRoute('home');
+        }
+
+         $manager->remove($article);
+         $manager->flush();
+
+         return $this->redirectToRoute('blog');
+ }
 }
+

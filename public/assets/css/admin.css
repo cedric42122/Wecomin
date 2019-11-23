@@ -12,6 +12,11 @@ h2 {
     height: 4.2vw;
 }
 
+h5 {
+    font-family: "NunitoSans-ExtraBold" !important;
+    color: #736A40 !important;
+}
+
 .modifLabel {
     font-family: "NunitoSans-ExtraBold" !important;
     color: #736A40 !important;
@@ -45,3 +50,18 @@ h2 {
 #services_description {
     margin-bottom: 1vw;
 }
+
+.modal-header h5 {
+    font-family: "IndieFlower-Regular", cursive;
+    color: #009FE3 !important;
+    font-size: 2vw !important;
+    text-shadow: 2px 2px 2px white;
+  }
+
+  .cancelModif {
+    background-color: #736A40 !important;
+    border-color: #736A40 !important;  
+  }
+
+  
+  
